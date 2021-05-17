@@ -154,3 +154,15 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 fortune | cowsay -f $(ls /usr/share/cows | shuf -n1) | lolcat
 
+# export JAVA_HOME='/usr/lib/jvm/java-14-openjdk'
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
+
+export SPARK_HOME='/home/fpeterek/spark'
+export PYSPARK_PYTHON=python3
+export PATH=$SPARK_HOME/bin:$PATH
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
