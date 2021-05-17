@@ -1,14 +1,14 @@
 window:
   dimensions:
-    columns: 110
-    lines: 31
-  decorations: none
+    columns: 140
+    lines: 36
+  # decorations: none
 
 font:
   normal:
     family: MesloLGS NF
     style: Regular
-  size: 16
+  size: 13
   use_thin_strokes: true
 
 cursor:
@@ -21,7 +21,8 @@ alt_send_esc: false
 colors:
   # Default colors
   primary:
-    background: '#282a36'
+    #background: '#282a36'
+    background: '#172b41'
     foreground: '#f8f8f2'
 
   # Normal colors
