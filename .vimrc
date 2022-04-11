@@ -22,3 +22,26 @@ set titlestring=vim\ -\ %t
 set noerrorbells
 set mouse=a
 
+call plug#begin()
+
+Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+Plug 'airblade/vim-gitgutter'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --java-completer --rust-completer' }
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'rakr/vim-one', { 'as': 'vimone' }
+Plug 'drewtempelmeyer/palenight.vim', { 'as': 'palenight' }
+Plug 'mhartington/oceanic-next'
+Plug 'arcticicestudio/nord-vim'
+
+call plug#end()
+
+"colorscheme dracula
+"colorscheme onehalfdark
+"colorscheme one
+"colorscheme palenight
+colorscheme OceanicNext
+"colorscheme nord
+
+set background=dark
+

@@ -17,32 +17,96 @@ cursor:
 
 alt_send_esc: false
 
-# Colors (Dracula)
+# Colors (Argonaut)
 colors:
   # Default colors
   primary:
-    #background: '#282a36'
-    background: '#172b41'
-    foreground: '#f8f8f2'
+    #background: '0x292C3E'
+    background: '#1B2B34'
+    foreground: '0xEBEBEB'
+
+  # Cursor colors
+  cursor:
+    text: '0xFF261E'
+    cursor: '0xFF261E'
 
   # Normal colors
   normal:
-    black:   '#000000'
-    red:     '#ff5555'
-    green:   '#50fa7b'
-    yellow:  '#f1fa8c'
-    blue:    '#caa9fa'
-    magenta: '#ff79c6'
-    cyan:    '#8be9fd'
-    white:   '#bfbfbf'
+    black:   '0x0d0d0d'
+    red:     '0xFF301B'
+    green:   '0xA0E521'
+    yellow:  '0xFFC620'
+    blue:    '0x1BA6FA'
+    magenta: '0x8763B8'
+    cyan:    '0x21DEEF'
+    white:   '0xEBEBEB'
 
   # Bright colors
   bright:
-    black:   '#575b70'
-    red:     '#ff6e67'
-    green:   '#5af78e'
-    yellow:  '#f4f99d'
-    blue:    '#caa9fa'
-    magenta: '#ff92d0'
-    cyan:    '#9aedfe'
-    white:   '#e6e6e6'
+    black:   '0x6D7070'
+    red:     '0xFF4352'
+    green:   '0xB8E466'
+    yellow:  '0xFFD750'
+    blue:    '0x1BA6FA'
+    magenta: '0xA578EA'
+    cyan:    '0x73FBF1'
+    white:   '0xFEFEF8'
+
+# Colors (Oceanic Next)
+#colors:
+#  # Default colors
+#  primary:
+#    background: '0x1b2b34'
+#    foreground: '0xd8dee9'
+#
+#  # Normal colors
+#  normal:
+#    black:   '0x29414f'
+#    red:     '0xec5f67'
+#    green:   '0x99c794'
+#    yellow:  '0xfac863'
+#    blue:    '0x6699cc'
+#    magenta: '0xc594c5'
+#    cyan:    '0x5fb3b3'
+#    white:   '0x65737e'
+#
+#  # Bright colors
+#  bright:
+#    black:   '0x405860'
+#    red:     '0xec5f67'
+#    green:   '0x99c794'
+#    yellow:  '0xfac863'
+#    blue:    '0x6699cc'
+#    magenta: '0xc594c5'
+#    cyan:    '0x5fb3b3'
+#    white:   '0xadb5c0'
+
+# Colors (Dracula)
+#colors:
+#  # Default colors
+#  primary:
+#    background: '#282a36'
+#    #background: '#172b41'
+#    foreground: '#f8f8f2'
+#
+#  # Normal colors
+#  normal:
+#    black:   '#000000'
+#    red:     '#ff5555'
+#    green:   '#50fa7b'
+#    yellow:  '#f1fa8c'
+#    blue:    '#caa9fa'
+#    magenta: '#ff79c6'
+#    cyan:    '#8be9fd'
+#    white:   '#bfbfbf'
+#
+#  # Bright colors
+#  bright:
+#    black:   '#575b70'
+#    red:     '#ff6e67'
+#    green:   '#5af78e'
+#    yellow:  '#f4f99d'
+#    blue:    '#caa9fa'
+#    magenta: '#ff92d0'
+#    cyan:    '#9aedfe'
+#    white:   '#e6e6e6'
