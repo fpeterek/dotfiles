@@ -36,6 +36,8 @@ Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
+set completeopt-=preview
+
 "colorscheme dracula
 "colorscheme onehalfdark
 "colorscheme one
