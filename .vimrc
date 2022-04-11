@@ -26,7 +26,7 @@ call plug#begin()
 
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 Plug 'airblade/vim-gitgutter'
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --java-completer --rust-completer' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --java-completer --rust-completer --clangd-completer' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'rakr/vim-one', { 'as': 'vimone' }
