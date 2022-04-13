@@ -45,6 +45,10 @@ zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
+bindkey -e
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
