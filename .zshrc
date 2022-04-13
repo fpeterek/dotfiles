@@ -27,6 +27,7 @@ SAVEHIST=500
 alias cp='cp -i'
 alias df='df -h'
 alias free='free -m'
+alias ls='ls --color=auto'
 alias la='ls -A'
 alias ll='ls -la'
 alias cat='bat'
