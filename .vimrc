@@ -33,8 +33,11 @@ Plug 'rakr/vim-one', { 'as': 'vimone' }
 Plug 'drewtempelmeyer/palenight.vim', { 'as': 'palenight' }
 Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
+Plug 'frazrepo/vim-rainbow'
 
 call plug#end()
+
+let g:rainbow_active=1
 
 set completeopt-=preview
 
