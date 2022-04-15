@@ -21,6 +21,7 @@ set title
 set titlestring=vim\ -\ %t
 set noerrorbells
 set mouse=a
+set encoding=UTF-8
 
 call plug#begin()
 
@@ -37,6 +38,11 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
+Plug 'preservim/tagbar'
+Plug 'preservim/nerdtree'
+
+" Should be the last plugin to load
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -70,5 +76,6 @@ noremap <C-l> <C-w>l
 nnoremap <C-n> :vertical res -5<CR>
 nnoremap <C-p> :vertical res +5<CR>
 
-
+noremap <Leader>tt :TagbarToggle<CR>
+noremap <Leader>nt :NERDTreeToggle<CR>
 
