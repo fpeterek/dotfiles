@@ -22,6 +22,7 @@ set titlestring=vim\ -\ %t
 set noerrorbells
 set mouse=a
 set encoding=UTF-8
+set incsearch
 
 " Requires Vim compiled with clipboard support enabled
 " On Arch, that means installing gvim, not vim, using pacman
@@ -44,6 +45,7 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
+Plug 'farmergreg/vim-lastplace'
 
 " Should be the last plugin to load
 Plug 'ryanoasis/vim-devicons'
