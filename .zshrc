@@ -31,6 +31,7 @@ alias ls='ls --color=auto'
 alias la='ls -A'
 alias ll='ls -la'
 alias cat='bat'
+alias vimrc='vim ~/.vimrc'
 
 autoload -U compinit colors zcalc
 compinit -d
@@ -53,7 +54,11 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
-fortune | cowsay -f $(ls /usr/share/cows | shuf -n1) | lolcat
+cowfortune() {
+    fortune | cowsay -f $(ls /usr/share/cows | shuf -n1) | lolcat
+}
+
+cowfortune
 
 # export JAVA_HOME='/usr/lib/jvm/java-14-openjdk'
 export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
@@ -61,6 +66,8 @@ export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 # export SPARK_HOME='/home/fpeterek/spark'
 # export PYSPARK_PYTHON=python3
 # export PATH=$SPARK_HOME/bin:$PATH
+
+export BAT_THEME='OneHalfDark'
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 

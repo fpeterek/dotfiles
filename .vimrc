@@ -34,10 +34,14 @@ Plug 'drewtempelmeyer/palenight.vim', { 'as': 'palenight' }
 Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
 Plug 'frazrepo/vim-rainbow'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-commentary'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
 let g:rainbow_active=1
+let g:airline_theme='oceanicnext'
 
 set completeopt-=preview
 
@@ -49,4 +53,22 @@ colorscheme OceanicNext
 "colorscheme nord
 
 set background=dark
+
+let mapleader="\<Space>"
+
+noremap <Leader>c :set invcursorline<CR>
+
+" Remap <C-l> so I can use the combination elsewhere
+noremap <C-s> <C-l>
+
+" h, j, k are unused, l has been rebound
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+nnoremap <C-n> :vertical res -5<CR>
+nnoremap <C-p> :vertical res +5<CR>
+
+
 

@@ -17,69 +17,104 @@ cursor:
 
 alt_send_esc: false
 
-# Colors (Argonaut)
+# OceanicDark adaptation
 colors:
   # Default colors
   primary:
-    #background: '0x292C3E'
-    background: '0x2C2C2C'
-    foreground: '0xEBEBEB'
+    background: '#262626'
+    foreground: '#d8dee9'
 
   # Cursor colors
   cursor:
-    text: '0xFF261E'
-    cursor: '0xFF261E'
+    text: '#FF261E'
+    cursor: '#FF261E'
 
   # Normal colors
   normal:
-    black:   '0x0d0d0d'
-    red:     '0xFF301B'
-    green:   '0xA0E521'
-    yellow:  '0xFFC620'
-    blue:    '0x1BA6FA'
-    magenta: '0x8763B8'
-    cyan:    '0x21DEEF'
-    white:   '0xEBEBEB'
+    black:   '#0d0d0d'
+    red:     '#ec5f67'
+    green:   '#99c794'
+    yellow:  '#fac863'
+    blue:    '#6699cc'
+    magenta: '#c594c5'
+    cyan:    '#62b3b2'
+    white:   '#c0c5ce'
 
   # Bright colors
   bright:
-    black:   '0x6D7070'
-    red:     '0xFF4352'
-    green:   '0xB8E466'
-    yellow:  '0xFFD750'
-    blue:    '0x1BA6FA'
-    magenta: '0xA578EA'
-    cyan:    '0x73FBF1'
-    white:   '0xFEFEF8'
+    black:   '#6D7070'
+    red:     '#fd3f47'
+    green:   '#a9e7a4'
+    yellow:  '#fdd883'
+    blue:    '#76a9dc'
+    magenta: '#d5a4d5'
+    cyan:    '#85D6C5'
+    white:   '#cdd3de'
+
+# Colors (Argonaut)
+#colors:
+#  # Default colors
+#  primary:
+#    #background: '0x292C3E'
+#    # background: '#2C2C2C'
+#    background: '#1b2b34'
+#    foreground: '#EBEBEB'
+
+#  # Cursor colors
+#  cursor:
+#    text: '0xFF261E'
+#    cursor: '0xFF261E'
+
+#  # Normal colors
+#  normal:
+#    black:   '#0d0d0d'
+#    red:     '#FF301B'
+#    green:   '#A0E521'
+#    yellow:  '#FFC620'
+#    blue:    '#1BA6FA'
+#    magenta: '#8763B8'
+#    cyan:    '#21DEEF'
+#    white:   '#EBEBEB'
+
+#  # Bright colors
+#  bright:
+#    black:   '#6D7070'
+#    red:     '#FF4352'
+#    green:   '#B8E466'
+#    yellow:  '#FFD750'
+#    blue:    '#1BA6FA'
+#    magenta: '#A578EA'
+#    cyan:    '#73FBF1'
+#    white:   '#FEFEF8'
 
 # Colors (Oceanic Next)
 #colors:
 #  # Default colors
 #  primary:
-#    background: '0x1b2b34'
-#    foreground: '0xd8dee9'
+#    background: '#1b2b34'
+#    foreground: '#d8dee9'
 #
 #  # Normal colors
 #  normal:
-#    black:   '0x29414f'
-#    red:     '0xec5f67'
-#    green:   '0x99c794'
-#    yellow:  '0xfac863'
-#    blue:    '0x6699cc'
-#    magenta: '0xc594c5'
-#    cyan:    '0x5fb3b3'
-#    white:   '0x65737e'
+#    black:   '#29414f'
+#    red:     '#ec5f67'
+#    green:   '#99c794'
+#    yellow:  '#fac863'
+#    blue:    '#6699cc'
+#    magenta: '#c594c5'
+#    cyan:    '#5fb3b3'
+#    white:   '#65737e'
 #
 #  # Bright colors
 #  bright:
-#    black:   '0x405860'
-#    red:     '0xec5f67'
-#    green:   '0x99c794'
-#    yellow:  '0xfac863'
-#    blue:    '0x6699cc'
-#    magenta: '0xc594c5'
-#    cyan:    '0x5fb3b3'
-#    white:   '0xadb5c0'
+#    black:   '#405860'
+#    red:     '#ec5f67'
+#    green:   '#99c794'
+#    yellow:  '#fac863'
+#    blue:    '#6699cc'
+#    magenta: '#c594c5'
+#    cyan:    '#5fb3b3'
+#    white:   '#adb5c0'
 
 # Colors (Dracula)
 #colors:
