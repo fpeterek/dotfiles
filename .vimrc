@@ -23,6 +23,10 @@ set noerrorbells
 set mouse=a
 set encoding=UTF-8
 
+" Requires Vim compiled with clipboard support enabled
+" On Arch, that means installing gvim, not vim, using pacman
+set clipboard=unnamedplus
+
 call plug#begin()
 
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
