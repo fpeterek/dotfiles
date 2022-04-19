@@ -1,0 +1,43 @@
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set number
+set wildmenu
+set ruler
+set showmode
+set showcmd
+set scrolloff=4
+set ignorecase
+set smartcase
+set smartindent
+set clipboard=unnamedplus
+
+set ideajoin
+set commentary
+set nerdtree
+
+let mapleader="\<Space>"
+
+" Remap <C-l> so I can use the combination elsewhere
+noremap <C-s> <C-l>
+
+" h, j, k are unused, l has been rebound
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+nnoremap <C-n> :vertical res -5<CR>
+nnoremap <C-p> :vertical res +5<CR>
+
+noremap <Leader>tt :TagbarToggle<CR>
+" NERDTree mappings differ from Vim because, unlike Vim,
+" IntelliJ does not consider the NERDTree file explorer
+" to be a separate window and thus disallows switching
+" between the editor and NERDTree using traditional window
+" switching keybindings
+noremap <Leader>no :NERDTreeToggle<CR>
+noremap <Leader>nt :NERDTree<CR>
+
