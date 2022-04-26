@@ -14,6 +14,16 @@ setopt nobeep
 setopt appendhistory
 setopt autocd
 
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+# I may wish to enable the following two options in the future
+# setopt INC_APPEND_HISTORY
+# setopt SHARE_HISTORY
+
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={a-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' rehash true
@@ -42,13 +52,28 @@ setopt prompt_subst
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+bindkey -e
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
+# One of the following keybindings is bound to work someday
+# Unfortunately, substring search stopped working for no apparent reason
+# I had to try multiple keybindings until one keybinding worked
+# Let's hope the following bindings will work for me on other devices and
+# terminal emulators as well
+
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
-bindkey -e
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+bindkey '^[OA' history-substring-search-up
+bindkey '^[OB' history-substring-search-down
+
+bindkey '\eOA' history-substring-search-up
+bindkey '\eOB' history-substring-search-down
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
