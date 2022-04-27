@@ -23,6 +23,8 @@ set noerrorbells
 set mouse=a
 set encoding=UTF-8
 set incsearch
+set cursorline
+set foldcolumn=1
 
 " Requires Vim compiled with clipboard support enabled
 " On Arch, that means installing gvim, not vim, using pacman
