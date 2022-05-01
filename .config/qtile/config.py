@@ -112,7 +112,7 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4, margin=4),
+    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4, margin=6),
     # layout.MonadTall(margin=4),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
@@ -145,7 +145,7 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.CheckUpdates(),
+                widget.CheckUpdates(no_update_string='No Updates'),
                 widget.Chord(
                     chords_colors={
                         "launch": ("#ff0000", "#ffffff"),
