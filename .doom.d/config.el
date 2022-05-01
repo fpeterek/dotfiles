@@ -51,7 +51,11 @@
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 
-(define-key evil-normal-state-map (kbd "<leader>nt") 'neotree-toggle)
+(map!
+  :leader
+  :desc "Toggle Neotree"
+    "n t"
+    #'neotree-toggle)
 
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
