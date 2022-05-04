@@ -85,8 +85,9 @@ cowfortune() {
 
 cowfortune
 
-# export JAVA_HOME='/usr/lib/jvm/java-14-openjdk'
-export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
+export JAVA_HOME='/usr/lib/jvm/java-11-openjdk'
+# export JAVA_HOME='/usr/lib/jvm/java-17-openjdk'
+# export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 
 # export SPARK_HOME='/home/fpeterek/spark'
 # export PYSPARK_PYTHON=python3

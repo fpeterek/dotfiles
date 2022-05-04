@@ -23,8 +23,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile import extension
@@ -144,16 +143,16 @@ screens = [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
+                widget.Sep(),
                 widget.WindowName(),
                 widget.CheckUpdates(no_update_string='No Updates'),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                widget.Sep(),
                 widget.Systray(),
+                widget.Sep(),
+                widget.KeyboardLayout(),
+                widget.Sep(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.Sep(),
                 widget.QuickExit(),
             ],
             24,
