@@ -127,11 +127,53 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=12,
-    padding=3,
+    font="sans bold",
+    fontsize=14,
+    padding=5,
+    background='#262626',
+    foreground='#d8dee9',
 )
 extension_defaults = widget_defaults.copy()
+
+light_blue = '#18eaf5'
+blue='#2b79a9'
+darker_blue='#88b8ce'
+dark_blue='#0e4971'
+pink = '#fc7188'
+purple = '#be7b9c'
+yellow = '#fdcf91'
+orange = '#fdc178'
+dark_text = '#262626'
+light_text='#d8dee9'
+font = 'sans bold'
+
+
+colors = [["#282c34", "#282c34"],
+          ["#1c1f24", "#1c1f24"],
+          ["#dfdfdf", "#dfdfdf"],
+          ["#ff6c6b", "#ff6c6b"],
+          ["#98be65", "#98be65"],
+          ["#da8548", "#da8548"],
+          ["#51afef", "#51afef"],
+          ["#c678dd", "#c678dd"],
+          ["#46d9ff", "#46d9ff"],
+          ["#a9a1e1", "#a9a1e1"]]
+
+
+widget_defaults = dict(
+    font="sans bold",
+    fontsize=14,
+    padding=8,
+    background=colors[0],
+    foreground=colors[2],
+)
+
+tri_left = '◀' 
+tri_right = '▶'
+tri_left = ''
+
+def left_sep(background, foreground):
+    return widget.TextBox(background=background, foreground=foreground, text=tri_left, fontsize=22, padding=0)
 
 screens = [
     Screen(
@@ -139,26 +181,44 @@ screens = [
         wallpaper_mode='fill',
         bottom=bar.Bar(
             [
-                widget.CurrentLayoutIcon(),
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.Sep(),
-                widget.WindowName(),
-                widget.CheckUpdates(no_update_string='No Updates'),
-                widget.Sep(),
-                widget.Systray(),
-                widget.Sep(),
-                widget.KeyboardLayout(),
-                widget.Sep(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.Sep(),
-                widget.QuickExit(),
+                widget.CurrentLayoutIcon(background=colors[0], foreground=colors[2]),
+                widget.CurrentLayout(background=colors[0], foreground=colors[2]),
+
+                widget.GroupBox(background=colors[0]),
+
+                widget.TextBox(background=colors[0], foreground=colors[2], text=tri_right, padding=7),
+                widget.WindowName(padding=2, font='sans', foreground=colors[2], fontsize=16, background=colors[0]),
+
+                widget.Systray(padding=9, background=colors[0]),
+                widget.Sep(foreground=colors[0], background=colors[0], padding=6),
+
+                left_sep(background=colors[0], foreground=colors[6]),
+                widget.CheckUpdates(
+                    no_update_string='No Updates', 
+                    update_interval=3600,
+                    background=colors[6], 
+                    foreground=colors[1],
+                    colour_have_updates=dark_text,
+                    colour_no_updates=dark_text),
+
+                left_sep(background=colors[6], foreground=colors[7]),
+                widget.KeyboardLayout(
+                    configured_keyboards=['cz', 'us'], 
+                    background=colors[7], 
+                    foreground=colors[1], 
+                    font='Inconsolata Bold', 
+                    fontsize=17, 
+                    padding=5),
+
+                left_sep(background=colors[7], foreground=colors[8]),
+                widget.Clock(format="%a %d.%m.%Y", font=font, background=colors[8], foreground=colors[1]),
+
+                left_sep(foreground=colors[9], background=colors[8]),
+                widget.Clock(format="%H:%M", font=font, background=colors[9], foreground=colors[1]),
             ],
             24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
+
     ),
     Screen(
         wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
