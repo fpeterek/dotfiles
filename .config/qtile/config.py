@@ -186,13 +186,13 @@ screens = [
 
                 widget.GroupBox(background=colors[0]),
 
-                widget.TextBox(background=colors[0], foreground=colors[2], text=tri_right, padding=7),
-                widget.WindowName(padding=2, font='sans', foreground=colors[2], fontsize=16, background=colors[0]),
+                widget.WindowName(padding=2, font='sans', foreground=colors[2], fontsize=15, background=colors[0], for_current_screen=True, format=f'{tri_right}  {{state}} {{name}}'),
 
-                widget.Systray(padding=9, background=colors[0]),
-                widget.Sep(foreground=colors[0], background=colors[0], padding=6),
+                left_sep(background=colors[0], foreground=colors[4]),
+                widget.Systray(padding=9, background=colors[4]),
+                widget.Sep(foreground=colors[4], background=colors[4], padding=6),
 
-                left_sep(background=colors[0], foreground=colors[6]),
+                left_sep(background=colors[4], foreground=colors[6]),
                 widget.CheckUpdates(
                     no_update_string='No Updates', 
                     update_interval=3600,
