@@ -57,6 +57,8 @@ call plug#end()
 let g:rainbow_active=1
 let g:airline_theme='oceanicnext'
 
+let g:ycm_enable_diagnostic_signs=0
+
 set completeopt-=preview
 
 "colorscheme dracula
