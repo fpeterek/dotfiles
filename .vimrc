@@ -59,6 +59,8 @@ let g:airline_theme='oceanicnext'
 
 let g:ycm_enable_diagnostic_signs=0
 
+let NERDTreeShowHidden=1
+
 set completeopt-=preview
 
 "colorscheme dracula
