@@ -79,7 +79,7 @@ keys = [
             fontsize=12,
         )
         ), desc="Launch dmenu"),
-    Key([mod], "s", lazy.spawn('xfce4-screenshooter'), desc="Take a screenshot"),
+    Key([mod], "s", lazy.spawn('flameshot gui'), desc="Take a screenshot"),
     Key([mod], "w", lazy.to_screen(1)),
     Key([mod], "e", lazy.to_screen(0)),
 ]
@@ -127,7 +127,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans bold",
+    font="roboto bold",
     fontsize=14,
     padding=5,
     background='#262626',
@@ -145,7 +145,7 @@ yellow = '#fdcf91'
 orange = '#fdc178'
 dark_text = '#262626'
 light_text='#d8dee9'
-font = 'sans bold'
+font = 'roboto bold'
 
 
 colors = [["#282c34", "#282c34"],
@@ -161,7 +161,7 @@ colors = [["#282c34", "#282c34"],
 
 
 widget_defaults = dict(
-    font="sans bold",
+    font="roboto bold",
     fontsize=14,
     padding=8,
     background=colors[0],
@@ -186,7 +186,7 @@ screens = [
 
                 widget.GroupBox(background=colors[0]),
 
-                widget.WindowName(padding=2, font='sans', foreground=colors[2], fontsize=15, background=colors[0], for_current_screen=True, format=f'{tri_right}  {{state}} {{name}}'),
+                widget.WindowName(padding=2, font='roboto', foreground=colors[2], fontsize=15, background=colors[0], for_current_screen=True, format=f'{tri_right}  {{state}} {{name}}'),
 
                 left_sep(background=colors[0], foreground=colors[4]),
                 widget.Systray(padding=9, background=colors[4]),
@@ -203,7 +203,7 @@ screens = [
 
                 left_sep(background=colors[6], foreground=colors[7]),
                 widget.KeyboardLayout(
-                    configured_keyboards=['cz', 'us'], 
+                    configured_keyboards=['us', 'cz'], 
                     background=colors[7], 
                     foreground=colors[1], 
                     font='Inconsolata Bold', 
