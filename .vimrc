@@ -7,6 +7,7 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set number
+set relativenumber
 set wildmenu
 syntax on
 set ruler
