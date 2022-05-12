@@ -29,6 +29,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+nnoremap <Leader>gi :action GotoImplementation<CR>
+nnoremap <Leader>gd :action GotoDeclaration<CR>
+
 nnoremap <C-n> :vertical res -5<CR>
 nnoremap <C-p> :vertical res +5<CR>
 
