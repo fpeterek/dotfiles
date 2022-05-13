@@ -80,6 +80,7 @@ keys = [
         )
         ), desc="Launch dmenu"),
     Key([mod], "s", lazy.spawn('flameshot gui'), desc="Take a screenshot"),
+    Key([mod], 'f', lazy.window.toggle_floating(), desc='Toggle floating'),
     Key([mod], "w", lazy.to_screen(1)),
     Key([mod], "e", lazy.to_screen(0)),
 ]
@@ -111,7 +112,8 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4, margin=6),
+    layout.Columns(border_focus_stack=["#4c7dc7", "#347deb"], border_width=4, margin=6,
+                   border_focus='#22b0e3', border_normal='#061e42'),
     # layout.MonadTall(margin=4),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
