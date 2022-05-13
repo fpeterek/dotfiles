@@ -17,131 +17,33 @@ cursor:
 
 alt_send_esc: false
 
-# OceanicDark adaptation
+# Ayu adaptation
 colors:
   # Default colors
   primary:
-    background: '#262626'
-    foreground: '#d8dee9'
-
-  # Cursor colors
-  cursor:
-    text: '#FF261E'
-    cursor: '#FF261E'
+    background: '#27272d' # '#1f2430'
+    foreground: '#cbccc6'
+    bright_foreground: '#f28779'
 
   # Normal colors
   normal:
-    black:   '#0d0d0d'
-    red:     '#ec5f67'
-    green:   '#65df95'
-    yellow:  '#fac863'
-    blue:    '#6699cc'
-    magenta: '#c594c5'
-    cyan:    '#62b3b2'
-    white:   '#c0c5ce'
+    black:   '#212733' #
+    red:     '#ed4e4e' #
+    green:   '#22df61' #
+    yellow:  '#fdcc60' #
+    blue:    '#60b8d6' # 
+    magenta: '#ec7171' #
+    cyan:    '#34d8eb' #
+    white:   '#fafafa' #
 
-  # Bright colors
+  # Brightened
   bright:
-    black:   '#6D7070'
-    red:     '#fd3f47'
-    green:   '#45df78'
-    yellow:  '#fdd883'
-    blue:    '#76a9dc'
-    magenta: '#d5a4d5'
-    cyan:    '#85D6C5'
-    white:   '#cdd3de'
+    black: '#686868'
+    red: '#f76868'
+    green: '#23fe6e'
+    yellow: '#ffd165'
+    blue: '#65bddb'
+    magenta: '#f17676'
+    cyan: '#1be1f7'
+    white: '#ffffff'
 
-# Colors (Argonaut)
-#colors:
-#  # Default colors
-#  primary:
-#    #background: '0x292C3E'
-#    # background: '#2C2C2C'
-#    background: '#1b2b34'
-#    foreground: '#EBEBEB'
-
-#  # Cursor colors
-#  cursor:
-#    text: '0xFF261E'
-#    cursor: '0xFF261E'
-
-#  # Normal colors
-#  normal:
-#    black:   '#0d0d0d'
-#    red:     '#FF301B'
-#    green:   '#A0E521'
-#    yellow:  '#FFC620'
-#    blue:    '#1BA6FA'
-#    magenta: '#8763B8'
-#    cyan:    '#21DEEF'
-#    white:   '#EBEBEB'
-
-#  # Bright colors
-#  bright:
-#    black:   '#6D7070'
-#    red:     '#FF4352'
-#    green:   '#B8E466'
-#    yellow:  '#FFD750'
-#    blue:    '#1BA6FA'
-#    magenta: '#A578EA'
-#    cyan:    '#73FBF1'
-#    white:   '#FEFEF8'
-
-# Colors (Oceanic Next)
-#colors:
-#  # Default colors
-#  primary:
-#    background: '#1b2b34'
-#    foreground: '#d8dee9'
-#
-#  # Normal colors
-#  normal:
-#    black:   '#29414f'
-#    red:     '#ec5f67'
-#    green:   '#99c794'
-#    yellow:  '#fac863'
-#    blue:    '#6699cc'
-#    magenta: '#c594c5'
-#    cyan:    '#5fb3b3'
-#    white:   '#65737e'
-#
-#  # Bright colors
-#  bright:
-#    black:   '#405860'
-#    red:     '#ec5f67'
-#    green:   '#99c794'
-#    yellow:  '#fac863'
-#    blue:    '#6699cc'
-#    magenta: '#c594c5'
-#    cyan:    '#5fb3b3'
-#    white:   '#adb5c0'
-
-# Colors (Dracula)
-#colors:
-#  # Default colors
-#  primary:
-#    background: '#282a36'
-#    #background: '#172b41'
-#    foreground: '#f8f8f2'
-#
-#  # Normal colors
-#  normal:
-#    black:   '#000000'
-#    red:     '#ff5555'
-#    green:   '#50fa7b'
-#    yellow:  '#f1fa8c'
-#    blue:    '#caa9fa'
-#    magenta: '#ff79c6'
-#    cyan:    '#8be9fd'
-#    white:   '#bfbfbf'
-#
-#  # Bright colors
-#  bright:
-#    black:   '#575b70'
-#    red:     '#ff6e67'
-#    green:   '#5af78e'
-#    yellow:  '#f4f99d'
-#    blue:    '#caa9fa'
-#    magenta: '#ff92d0'
-#    cyan:    '#9aedfe'
-#    white:   '#e6e6e6'
