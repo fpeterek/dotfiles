@@ -28,6 +28,8 @@ set incsearch
 set cursorline
 set foldcolumn=1
 
+" Clipboard support requires xclip to be installed on the system
+" sudo pacman -S xclip
 set clipboard=unnamedplus
 
 call plug#begin()
