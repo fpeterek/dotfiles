@@ -43,6 +43,10 @@ Plug 'airblade/vim-gitgutter'
 "Plug 'drewtempelmeyer/palenight.vim', { 'as': 'palenight' }
 Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
+Plug 'rose-pine/neovim'
+Plug 'navarasu/onedark.nvim'
+Plug 'marko-cerovac/material.nvim'
+
 Plug 'ayu-theme/ayu-vim'
 Plug 'frazrepo/vim-rainbow'
 
@@ -160,6 +164,10 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
+require('rose-pine').setup({
+    disable_italics = true
+})
+
 EOF
 
 au VimLeave * set guicursor=a:ver25
@@ -169,9 +177,15 @@ let g:rainbow_active=1
 set signcolumn=yes
 set completeopt-=preview
 
+let g:material_style="palenight"
+let g:rose_pine_variant='moon'
+
 set termguicolors
+
 let ayucolor='mirage'
-colorscheme ayu
+"colorscheme ayu
+
+colorscheme rose-pine
 
 set background=dark
 
