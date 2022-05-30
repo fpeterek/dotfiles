@@ -114,7 +114,7 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#4c7dc7", "#347deb"], border_width=4, margin=6,
+    layout.Columns(border_focus_stack=["#4c7dc7", "#347deb"], border_width=3, margin=4,
                    border_focus='#22b0e3', border_normal='#061e42'),
     # layout.MonadTall(margin=4),
     layout.Max(),
