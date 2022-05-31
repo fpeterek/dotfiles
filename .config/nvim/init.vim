@@ -86,14 +86,34 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local lspconfig = require('lspconfig')
 
+local lsp_opts = { noremap=true, silent=true }
+
+vim.api.nvim_set_keymap('n', '<space>do', '<cmd>lua vim.diagnostic.open_float()<CR>', lsp_opts)
+vim.api.nvim_set_keymap('n', '<space>dn', '<cmd>lua vim.diagnostic.goto_prev()<CR>', lsp_opts)
+vim.api.nvim_set_keymap('n', '<space>dp', '<cmd>lua vim.diagnostic.goto_next()<CR>', lsp_opts)
+vim.api.nvim_set_keymap('n', '<space>dq', '<cmd>lua vim.diagnostic.setloclist()<CR>', lsp_opts)
+
+local lsp_on_attach = function(client, bufnr)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gr', '<cmd>lua vim.lsp.buf.references()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>', lsp_opts)
+end
+
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { 'clangd' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
+    on_attach = lsp_on_attach,
     capabilities = capabilities,
   }
 end
+
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -208,7 +228,8 @@ nnoremap <C-n> :vertical res -5<CR>
 nnoremap <C-p> :vertical res +5<CR>
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fa <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 
 nnoremap <leader>tt :TagbarToggle<CR>
