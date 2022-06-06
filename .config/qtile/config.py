@@ -179,6 +179,18 @@ tri_left = ''
 def left_sep(background, foreground):
     return widget.TextBox(background=background, foreground=foreground, text=tri_left, fontsize=22, padding=0)
 
+
+keyboard_layout = widget.KeyboardLayout(
+                                        configured_keyboards=['us', 'cz'], 
+                                        background=colors[7], 
+                                        foreground=colors[1], 
+                                        font='Inconsolata Bold', 
+                                        fontsize=17, 
+                                        padding=5)
+
+
+keys.append(Key([mod], "m", lazy.widget['keyboardlayout'].next_keyboard()))
+
 screens = [
     Screen(
         wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
@@ -206,13 +218,7 @@ screens = [
                     colour_no_updates=dark_text),
 
                 left_sep(background=colors[6], foreground=colors[7]),
-                widget.KeyboardLayout(
-                    configured_keyboards=['us', 'cz'], 
-                    background=colors[7], 
-                    foreground=colors[1], 
-                    font='Inconsolata Bold', 
-                    fontsize=17, 
-                    padding=5),
+                keyboard_layout,
 
                 left_sep(background=colors[7], foreground=colors[8]),
                 widget.Clock(format="%a %d.%m.%Y", font=font, background=colors[8], foreground=colors[1]),
