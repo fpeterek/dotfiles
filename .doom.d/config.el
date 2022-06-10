@@ -51,6 +51,8 @@
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 
+(setq display-line-numbers 'relative)
+
 (map!
   :leader
   :desc "Toggle Neotree"
