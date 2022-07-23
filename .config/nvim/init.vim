@@ -46,6 +46,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'rose-pine/neovim'
 Plug 'navarasu/onedark.nvim'
 Plug 'marko-cerovac/material.nvim'
+Plug 'EdenEast/nightfox.nvim'
 
 Plug 'ayu-theme/ayu-vim'
 Plug 'frazrepo/vim-rainbow'
@@ -208,6 +209,7 @@ let ayucolor='mirage'
 "colorscheme ayu
 
 colorscheme rose-pine
+"colors nightfox
 
 set background=dark
 
