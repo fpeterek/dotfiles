@@ -68,6 +68,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'scalameta/nvim-metals'
 
 " Should be the last plugin to load
 Plug 'ryanoasis/vim-devicons'
@@ -83,6 +84,8 @@ require'lspconfig'.clangd.setup{}
 
 require'lspconfig'.rust_analyzer.setup{}
 
+require'lspconfig'.kotlin_language_server.setup{}
+
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -92,8 +95,8 @@ local lspconfig = require('lspconfig')
 local lsp_opts = { noremap=true, silent=true }
 
 vim.api.nvim_set_keymap('n', '<space>do', '<cmd>lua vim.diagnostic.open_float()<CR>', lsp_opts)
-vim.api.nvim_set_keymap('n', '<space>dn', '<cmd>lua vim.diagnostic.goto_prev()<CR>', lsp_opts)
-vim.api.nvim_set_keymap('n', '<space>dp', '<cmd>lua vim.diagnostic.goto_next()<CR>', lsp_opts)
+vim.api.nvim_set_keymap('n', '<space>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', lsp_opts)
+vim.api.nvim_set_keymap('n', '<space>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', lsp_opts)
 vim.api.nvim_set_keymap('n', '<space>dq', '<cmd>lua vim.diagnostic.setloclist()<CR>', lsp_opts)
 
 local lsp_on_attach = function(client, bufnr)
@@ -101,11 +104,12 @@ local lsp_on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', lsp_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', lsp_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>hs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', lsp_opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', lsp_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', lsp_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', lsp_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gr', '<cmd>lua vim.lsp.buf.references()<CR>', lsp_opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>', lsp_opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>sh', '<cmd>lua vim.lsp.buf.hover()<CR>', lsp_opts)
 end
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
@@ -117,6 +121,28 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+local metals_conf = require('metals').bare_config()
+
+metals_conf.settings = {
+    showImplicitArguments = true
+}
+
+metals_conf.on_attach = lsp_on_attach
+metals_conf.capabilities = capabilities
+metals_conf.init_options.statusBarProvider = "on"
+
+-- Autocmd that will actually be in charging of starting the whole thing
+local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  -- NOTE: You may or may not want java included here. You will need it if you
+  -- want basic Java support but it may also conflict if you are using
+  -- something like nvim-jdtls which also works on a java filetype autocmd.
+  pattern = { "scala", "sbt", "java" },
+  callback = function()
+    require("metals").initialize_or_attach(metals_conf)
+  end,
+  group = nvim_metals_group,
+})
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -163,7 +189,7 @@ cmp.setup {
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "cpp", "rust" },
+  ensure_installed = { "c", "cpp", "rust", "java", "kotlin", "scala" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
