@@ -85,6 +85,13 @@ keys = [
     Key([mod], 'f', lazy.window.toggle_floating(), desc='Toggle floating'),
     Key([mod], "w", lazy.to_screen(1)),
     Key([mod], "e", lazy.to_screen(0)),
+
+    # Volume (hold shift for lighter adjustments)
+    Key([], "F11", lazy.spawn("pamixer -d 5")),
+    Key(['shift'], "F11", lazy.spawn("pamixer -d 1")),
+    Key([], "F12", lazy.spawn("pamixer -i 5")),
+    Key(['shift'], "F12", lazy.spawn("pamixer -i 1")),
+    Key([], "F10", lazy.spawn("pamixer -t")),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -193,7 +200,8 @@ keys.append(Key([mod], "m", lazy.widget['keyboardlayout'].next_keyboard()))
 
 screens = [
     Screen(
-        wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
+        # wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
+        wallpaper='~/Downloads/rose_pine_shape.png',
         wallpaper_mode='fill',
         bottom=bar.Bar(
             [
@@ -209,13 +217,18 @@ screens = [
                 widget.Sep(foreground=colors[4], background=colors[4], padding=6),
 
                 left_sep(background=colors[4], foreground=colors[6]),
-                widget.CheckUpdates(
-                    no_update_string='No Updates', 
-                    update_interval=3600,
+                widget.PulseVolume(
+
                     background=colors[6], 
-                    foreground=colors[1],
-                    colour_have_updates=dark_text,
-                    colour_no_updates=dark_text),
+                    foreground=colors[1]),
+
+                # widget.CheckUpdates(
+                #     no_update_string='No Updates', 
+                #     update_interval=3600,
+                #     background=colors[6], 
+                #     foreground=colors[1],
+                #     colour_have_updates=dark_text,
+                #     colour_no_updates=dark_text),
 
                 left_sep(background=colors[6], foreground=colors[7]),
                 keyboard_layout,
@@ -231,7 +244,10 @@ screens = [
 
     ),
     Screen(
-        wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
+        # wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
+        # wallpaper='~/Downloads/rose_pine_maze.png',
+        # wallpaper='~/Downloads/rose_pine_noiseline.png',
+        wallpaper='~/Downloads/rose_pine_shape.png',
         wallpaper_mode='fill',
     )
 ]
