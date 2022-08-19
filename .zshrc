@@ -5,8 +5,8 @@
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 setopt correct
 setopt numericglobsort
@@ -75,6 +75,9 @@ bindkey '^[OB' history-substring-search-down
 bindkey '\eOA' history-substring-search-up
 bindkey '\eOB' history-substring-search-down
 
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
@@ -85,9 +88,13 @@ cowfortune() {
 
 cowfortune
 
-export JAVA_HOME='/usr/lib/jvm/java-11-openjdk'
+reorder-screens() {
+    xrandr --output HDMI-0 --auto --output HDMI-1 --left-of HDMI-0
+}
+
+# export JAVA_HOME='/usr/lib/jvm/java-11-openjdk'
 # export JAVA_HOME='/usr/lib/jvm/java-17-openjdk'
-# export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 
 # export SPARK_HOME='/home/fpeterek/spark'
 # export PYSPARK_PYTHON=python3
