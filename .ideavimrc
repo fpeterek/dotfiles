@@ -32,9 +32,11 @@ noremap <C-l> <C-w>l
 
 nnoremap <Leader>gi :action GotoImplementation<CR>
 nnoremap <Leader>gd :action GotoDeclaration<CR>
+nnoremap <Leader>gr :action FindUsages<CR>
+nnoremap <Leader>rn :action RenameElement<CR>
+nnoremap <Leader>dn :action GotoNextError<CR>
+nnoremap <Leader>dp :action GotoPreviousError<CR>
 
-nnoremap <C-n> :vertical res -5<CR>
-nnoremap <C-p> :vertical res +5<CR>
 
 noremap <Leader>tt :TagbarToggle<CR>
 " NERDTree mappings differ from Vim because, unlike Vim,
