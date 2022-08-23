@@ -24,6 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import subprocess
+import os
 
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -200,8 +201,8 @@ keys.append(Key([mod], "m", lazy.widget['keyboardlayout'].next_keyboard()))
 
 screens = [
     Screen(
-        # wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
-        wallpaper='~/Downloads/rose_pine_shape.png',
+        wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
+        # wallpaper='~/Downloads/rose_pine_shape.png',
         wallpaper_mode='fill',
         bottom=bar.Bar(
             [
@@ -243,13 +244,6 @@ screens = [
         ),
 
     ),
-    Screen(
-        # wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
-        # wallpaper='~/Downloads/rose_pine_maze.png',
-        # wallpaper='~/Downloads/rose_pine_noiseline.png',
-        wallpaper='~/Downloads/rose_pine_shape.png',
-        wallpaper_mode='fill',
-    )
 ]
 
 # Drag floating layouts.
@@ -303,3 +297,8 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home])
