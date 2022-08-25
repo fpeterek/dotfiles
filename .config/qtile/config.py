@@ -88,11 +88,14 @@ keys = [
     Key([mod], "e", lazy.to_screen(0)),
 
     # Volume (hold shift for lighter adjustments)
-    Key([], "F11", lazy.spawn("pamixer -d 5")),
-    Key(['shift'], "F11", lazy.spawn("pamixer -d 1")),
-    Key([], "F12", lazy.spawn("pamixer -i 5")),
-    Key(['shift'], "F12", lazy.spawn("pamixer -i 1")),
-    Key([], "F10", lazy.spawn("pamixer -t")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5")),
+    Key(['shift'], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 1")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5")),
+    Key(['shift'], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 1")),
+    Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),
+
+    Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 5")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 5")),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -160,17 +163,27 @@ light_text='#d8dee9'
 font = 'roboto bold'
 
 
+# colors = [["#282c34", "#282c34"],
+#           ["#1c1f24", "#1c1f24"],
+#           ["#dfdfdf", "#dfdfdf"],
+#           ["#ff6c6b", "#ff6c6b"],
+#           ["#98be65", "#98be65"],
+#           ["#da8548", "#da8548"],
+#           ["#51afef", "#51afef"],
+#           ["#c678dd", "#c678dd"],
+#           ["#46d9ff", "#46d9ff"],
+#           ["#a9a1e1", "#a9a1e1"]]
+
 colors = [["#282c34", "#282c34"],
           ["#1c1f24", "#1c1f24"],
           ["#dfdfdf", "#dfdfdf"],
-          ["#ff6c6b", "#ff6c6b"],
-          ["#98be65", "#98be65"],
-          ["#da8548", "#da8548"],
-          ["#51afef", "#51afef"],
-          ["#c678dd", "#c678dd"],
-          ["#46d9ff", "#46d9ff"],
+          ["#f5e0dc", "#f5e0dc"],
+          ["#81c19b", "#81c19b"],
+          ["#df5b61", "#df5b61"],
+          ["#6791c9", "#6791c9"],
+          ["#f5c2e7", "#f5c2e7"],
+          ["#89dceb", "#89dceb"],
           ["#a9a1e1", "#a9a1e1"]]
-
 
 widget_defaults = dict(
     font="roboto bold",
@@ -217,19 +230,20 @@ screens = [
                 widget.Systray(padding=9, background=colors[4]),
                 widget.Sep(foreground=colors[4], background=colors[4], padding=6),
 
-                left_sep(background=colors[4], foreground=colors[6]),
-                widget.PulseVolume(
+                left_sep(background=colors[4], foreground=colors[3]),
+                widget.Battery(
+                    format='{char} {percent:2.0%}',
+                    padding=9, 
+                    background=colors[3],
+                    foreground=colors[1]),
+                # widget.Sep(foreground=colors[3], background=colors[3], padding=2),
 
+
+                left_sep(background=colors[3], foreground=colors[6]),
+                widget.PulseVolume(
+                    update_interval=0.1,
                     background=colors[6], 
                     foreground=colors[1]),
-
-                # widget.CheckUpdates(
-                #     no_update_string='No Updates', 
-                #     update_interval=3600,
-                #     background=colors[6], 
-                #     foreground=colors[1],
-                #     colour_have_updates=dark_text,
-                #     colour_no_updates=dark_text),
 
                 left_sep(background=colors[6], foreground=colors[7]),
                 keyboard_layout,
