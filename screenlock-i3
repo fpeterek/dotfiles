@@ -1,0 +1,4 @@
+#!/bin/bash
+
+i3lock --screen 1 --blur 5 --time-str="%H:%M:%S" --date-str="%a %d.%m.%Y" --ring-color='#22b0e3ff' --keyhl-color='#648cccff' --indicator --clock --time-color='#22b0e3ff' --date-color='#22b0e3ff' --redraw-thread
+

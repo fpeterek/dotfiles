@@ -1,0 +1,6 @@
+xset b off
+xset s on
+xset s 600
+xss-lock screenlock-i3 &
+
+
