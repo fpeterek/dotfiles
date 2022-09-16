@@ -88,11 +88,20 @@ keys = [
     Key([mod], "e", lazy.to_screen(0)),
 
     # Volume (hold shift for lighter adjustments)
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5")),
-    Key(['shift'], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 1")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5")),
-    Key(['shift'], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 1")),
-    Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),
+
+    # Comment/Uncomment depending on what works on your keyboard
+
+    # Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5")),
+    # Key(['shift'], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 1")),
+    # Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5")),
+    # Key(['shift'], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 1")),
+    # Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),
+
+    Key([], "F11", lazy.spawn("pamixer -d 5")),
+    Key(['shift'], "F11", lazy.spawn("pamixer -d 1")),
+    Key([], "F12", lazy.spawn("pamixer -i 5")),
+    Key(['shift'], "F12", lazy.spawn("pamixer -i 1")),
+    Key([], "F10", lazy.spawn("pamixer -t")),
 
     Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 5")),
     Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 5")),
@@ -162,18 +171,6 @@ dark_text = '#262626'
 light_text='#d8dee9'
 font = 'roboto bold'
 
-
-# colors = [["#282c34", "#282c34"],
-#           ["#1c1f24", "#1c1f24"],
-#           ["#dfdfdf", "#dfdfdf"],
-#           ["#ff6c6b", "#ff6c6b"],
-#           ["#98be65", "#98be65"],
-#           ["#da8548", "#da8548"],
-#           ["#51afef", "#51afef"],
-#           ["#c678dd", "#c678dd"],
-#           ["#46d9ff", "#46d9ff"],
-#           ["#a9a1e1", "#a9a1e1"]]
-
 colors = [["#282c34", "#282c34"],
           ["#1c1f24", "#1c1f24"],
           ["#dfdfdf", "#dfdfdf"],
@@ -214,8 +211,8 @@ keys.append(Key([mod], "m", lazy.widget['keyboardlayout'].next_keyboard()))
 
 screens = [
     Screen(
-        wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
-        # wallpaper='~/Downloads/rose_pine_shape.png',
+        # wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
+        wallpaper='~/Downloads/rose_pine_shape.png',
         wallpaper_mode='fill',
         bottom=bar.Bar(
             [
@@ -230,16 +227,14 @@ screens = [
                 widget.Systray(padding=9, background=colors[4]),
                 widget.Sep(foreground=colors[4], background=colors[4], padding=6),
 
-                left_sep(background=colors[4], foreground=colors[3]),
-                widget.Battery(
-                    format='{char} {percent:2.0%}',
-                    padding=9, 
-                    background=colors[3],
-                    foreground=colors[1]),
-                # widget.Sep(foreground=colors[3], background=colors[3], padding=2),
+                # left_sep(background=colors[4], foreground=colors[3]),
+                # widget.Battery(
+                #     format='{char} {percent:2.0%}',
+                #     padding=9, 
+                #     background=colors[3],
+                #     foreground=colors[1]),
 
-
-                left_sep(background=colors[3], foreground=colors[6]),
+                left_sep(background=colors[4], foreground=colors[6]),
                 widget.PulseVolume(
                     update_interval=0.1,
                     background=colors[6], 
@@ -258,6 +253,14 @@ screens = [
         ),
 
     ),
+
+    Screen(
+        # wallpaper='~/Downloads/alena-aenami-wings-hd.jpg',
+        # wallpaper='~/Downloads/rose_pine_maze.png',
+        # wallpaper='~/Downloads/rose_pine_noiseline.png',
+        wallpaper='~/Downloads/rose_pine_shape.png',
+        wallpaper_mode='fill',
+    )
 ]
 
 # Drag floating layouts.
@@ -289,12 +292,6 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 
-@hook.subscribe.startup_once
-def autostart():
-    # subprocess.Popen('picom')
-    pass
-
-
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
 auto_minimize = True
@@ -312,7 +309,8 @@ wl_input_rules = None
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
-@hook.subscribe.startup_once
-def start_once():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.Popen([home])
+# @hook.subscribe.startup_once
+# def start_once():
+#     home = os.path.expanduser('~/.config/qtile/autostart.sh')
+#     subprocess.Popen([home])
+
