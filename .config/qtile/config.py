@@ -309,8 +309,8 @@ wl_input_rules = None
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
-# @hook.subscribe.startup_once
-# def start_once():
-#     home = os.path.expanduser('~/.config/qtile/autostart.sh')
-#     subprocess.Popen([home])
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home])
 
