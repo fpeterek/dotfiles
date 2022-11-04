@@ -88,6 +88,7 @@ require'lspconfig'.kotlin_language_server.setup{}
 
 require'lspconfig'.pylsp.setup{}
 
+require'lspconfig'.hls.setup{}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -115,7 +116,7 @@ local lsp_on_attach = function(client, bufnr)
 end
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'rust_analyzer', 'pylsp', 'kotlin_language_server' }
+local servers = { 'clangd', 'rust_analyzer', 'pylsp', 'kotlin_language_server', 'hls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = lsp_on_attach,
