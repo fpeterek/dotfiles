@@ -14,6 +14,7 @@ set ignorecase
 set smartcase
 set smartindent
 set clipboard=unnamedplus
+set incsearch
 
 set ideajoin
 set commentary
