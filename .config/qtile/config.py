@@ -285,7 +285,8 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-    ]
+    ],
+    border_width=0
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
@@ -309,8 +310,8 @@ wl_input_rules = None
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
+
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.Popen([home])
-
