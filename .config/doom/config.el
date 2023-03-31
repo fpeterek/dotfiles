@@ -36,11 +36,9 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 (setq doom-font 
-      (font-spec :family "Fira Code" :size 16))
-
-(setq scroll-margin 4)
+      (font-spec :family "Fira Code" :size 17))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -50,8 +48,6 @@
 (define-key evil-visual-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
-
-(setq display-line-numbers 'relative)
 
 (map!
   :leader
