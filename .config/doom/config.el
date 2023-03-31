@@ -40,9 +40,19 @@
 (setq doom-font 
       (font-spec :family "Fira Code" :size 17))
 
+(add-hook 'prog-moge-hook #'display-fill-column-indicator-mode)
+(add-hook 'tex-moge-hook #'display-fill-column-indicator-mode)
+(add-hook 'TeX-moge-hook #'display-fill-column-indicator-mode)
+(add-hook 'latex-moge-hook #'display-fill-column-indicator-mode)
+(add-hook 'LaTeX-moge-hook #'display-fill-column-indicator-mode)
+(setq display-fill-indicator-column 100)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+
+(after! evil-snipe
+    (evil-snipe-mode -1))
 
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-visual-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
