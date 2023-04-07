@@ -38,14 +38,20 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 (setq doom-font 
-      (font-spec :family "Fira Code" :size 17))
+    (font-spec :family "Fira Code" :size 17))
 
-(add-hook 'prog-moge-hook #'display-fill-column-indicator-mode)
-(add-hook 'tex-moge-hook #'display-fill-column-indicator-mode)
-(add-hook 'TeX-moge-hook #'display-fill-column-indicator-mode)
-(add-hook 'latex-moge-hook #'display-fill-column-indicator-mode)
-(add-hook 'LaTeX-moge-hook #'display-fill-column-indicator-mode)
-(setq display-fill-indicator-column 100)
+; (setq doom-font 
+;      (font-spec :family "Fira Code Regular Nerd Font Complete Mono" :size 17))
+
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+(add-hook 'tex-mode-hook #'display-fill-column-indicator-mode)
+(add-hook 'TeX-mode-hook #'display-fill-column-indicator-mode)
+(add-hook 'latex-mode-hook #'display-fill-column-indicator-mode)
+(add-hook 'LaTeX-mode-hook #'display-fill-column-indicator-mode)
+
+(setq-default display-fill-column-indicator-column 100)
+
+(setq company-selection-wrap-around t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
