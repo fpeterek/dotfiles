@@ -57,8 +57,10 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
+(remove-hook 'doom-first-input-hook #'evil-snipe-mode)
 (after! evil-snipe
-    (evil-snipe-mode -1))
+    (evil-snipe-mode -1)
+    (evil-snipe-override-mode -1))
 
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-visual-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
