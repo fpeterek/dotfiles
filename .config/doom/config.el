@@ -53,6 +53,8 @@
 
 (setq company-selection-wrap-around t)
 
+(setq scroll-margin 5)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
@@ -72,6 +74,12 @@
   :desc "Toggle Neotree"
     "n t"
     #'neotree-toggle)
+
+(map!
+  :leader
+  :desc "Open Vterm"
+    "v t"
+    #'vterm)
 
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)

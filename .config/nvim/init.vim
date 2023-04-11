@@ -47,8 +47,8 @@ Plug 'rose-pine/neovim'
 Plug 'navarasu/onedark.nvim'
 Plug 'marko-cerovac/material.nvim'
 Plug 'EdenEast/nightfox.nvim'
-
 Plug 'ayu-theme/ayu-vim'
+
 Plug 'frazrepo/vim-rainbow'
 
 Plug 'tpope/vim-commentary'
@@ -220,6 +220,16 @@ require('rose-pine').setup({
     disable_italics = true
 })
 
+require'shade'.setup({
+  overlay_opacity = 50,
+  opacity_step = 1,
+  keys = {
+    brightness_up    = '<C-Up>',
+    brightness_down  = '<C-Down>',
+    toggle           = '<Leader>s',
+  }
+})
+
 EOF
 
 au VimLeave * set guicursor=a:ver25
@@ -229,15 +239,18 @@ let g:rainbow_active=1
 set signcolumn=yes
 set completeopt-=preview
 
-let g:material_style="palenight"
+let g:material_style="darker"
 let g:rose_pine_variant='moon'
 
 set termguicolors
 
 let ayucolor='mirage'
 "colorscheme ayu
+"colors material
+colors onedark
+" colors carbonfox
 
-colorscheme rose-pine
+"colorscheme rose-pine
 "colors nightfox
 
 set background=dark
