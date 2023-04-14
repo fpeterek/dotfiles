@@ -69,6 +69,24 @@
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 
+(map! 
+  :leader 
+  :desc "Goto definition"
+  "g d"
+  #'evil-goto-definition)
+
+(map! 
+  :leader 
+  :desc "Goto reference"
+  "g r"
+  #'lsp-find-references)
+
+(map! 
+  :leader 
+  :desc "Rename"
+  "r n"
+  #'lsp-rename)
+
 (map!
   :leader
   :desc "Toggle Neotree"
