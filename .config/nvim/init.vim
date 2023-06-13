@@ -6,6 +6,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
+set smartindent
 set number
 set relativenumber
 set wildmenu
@@ -27,6 +28,8 @@ set nohlsearch
 set incsearch
 set cursorline
 set foldcolumn=1
+set showbreak=↪
+set nolinebreak
 
 " Clipboard support requires xclip to be installed on the system
 " sudo pacman -S xclip
@@ -34,9 +37,7 @@ set clipboard=unnamedplus
 
 call plug#begin()
 
-"Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
-Plug 'airblade/vim-gitgutter'
-"Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --java-completer --rust-completer --clangd-completer' }
+" Plug 'airblade/vim-gitgutter'
 "Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'sonph/onehalf', { 'rtp': 'vim' }
 "Plug 'rakr/vim-one', { 'as': 'vimone' }
@@ -70,6 +71,8 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'scalameta/nvim-metals'
 
+Plug 'lewis6991/gitsigns.nvim'
+
 " Should be the last plugin to load
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -77,6 +80,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 lua << EOF
+
+require('gitsigns').setup()
 
 require'lualine'.setup()
 
@@ -220,16 +225,26 @@ require('rose-pine').setup({
     disable_italics = true
 })
 
-require'shade'.setup({
-  overlay_opacity = 50,
-  opacity_step = 1,
-  keys = {
-    brightness_up    = '<C-Up>',
-    brightness_down  = '<C-Down>',
-    toggle           = '<Leader>s',
-  }
-})
+-- require'shade'.setup({
+--   overlay_opacity = 50,
+--   opacity_step = 1,
+--   keys = {
+--     brightness_up    = '<C-Up>',
+--     brightness_down  = '<C-Down>',
+--     toggle           = '<Leader>s',
+--   }
+-- })
 
+require('neo-tree').setup({
+    close_if_last_window = true,
+    filesystem = {
+        hide_dotfiles = false,
+    },
+    never_show = {
+        '.git',
+        'venv',
+    }
+})
 EOF
 
 au VimLeave * set guicursor=a:ver25
