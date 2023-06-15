@@ -32,6 +32,8 @@ from libqtile.lazy import lazy
 from libqtile import extension
 # from libqtile.utils import guess_terminal
 
+from qtile_extras import widget as exw
+
 mod = "mod4"
 terminal = 'alacritty'  # guess_terminal()
 
@@ -217,7 +219,7 @@ screens = [
         bottom=bar.Bar(
             [
                 widget.CurrentLayoutIcon(background=colors[0], foreground=colors[2]),
-                widget.CurrentLayout(background=colors[0], foreground=colors[2]),
+                # widget.CurrentLayout(background=colors[0], foreground=colors[2]),
 
                 widget.GroupBox(background=colors[0]),
 
@@ -229,10 +231,26 @@ screens = [
 
                 # left_sep(background=colors[4], foreground=colors[3]),
                 # widget.Battery(
-                #     format='{char} {percent:2.0%}',
+                #     format='{percent:2.0%}',
                 #     padding=9, 
                 #     background=colors[3],
                 #     foreground=colors[1]),
+
+                # exw.UPowerWidget(
+                #     background=colors[3],
+                #     foreground=colors[1],
+                #     padding=9,
+                #     border_colour=colors[0],
+                #     border_charge_colour=colors[0],
+                #     border_critical_colour=colors[0],
+                #     fill_charge=colors[4],
+                #     fill_low=colors[0],
+                #     fill_critical=colors[0],
+                #     fill_normal=colors[0],
+                #     text_display_time=3,
+                #     text_charging='{ttf} until fully charged',
+                #     text_discharging='{tte} until empty',
+                #     ),
 
                 left_sep(background=colors[4], foreground=colors[6]),
                 widget.PulseVolume(
