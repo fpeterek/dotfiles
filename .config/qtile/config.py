@@ -153,14 +153,13 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-widget_defaults = dict(
+extension_defaults = dict(
     font="roboto bold",
     fontsize=14,
     padding=5,
     background='#262626',
     foreground='#d8dee9',
 )
-extension_defaults = widget_defaults.copy()
 
 font = 'roboto bold'
 
@@ -178,7 +177,7 @@ colors = [["#282c34", "#282c34"],
 widget_defaults = dict(
     font="roboto bold",
     fontsize=14,
-    padding=8,
+    padding=10,
     background=colors[0],
     foreground=colors[2],
 )
@@ -204,7 +203,6 @@ keyboard_layout = widget.KeyboardLayout(
                                         foreground=colors[7],
                                         font='Inconsolata Bold',
                                         fontsize=17,
-                                        padding=10,
                                         **border(colors[7]))
 
 keys.append(Key([mod], "m", lazy.widget['keyboardlayout'].next_keyboard()))
@@ -222,8 +220,7 @@ screens = [
 
                 widget.GroupBox(background=colors[0]),
 
-                widget.WindowName(padding=10,
-                                  font='roboto',
+                widget.WindowName(font='roboto',
                                   foreground=colors[2],
                                   fontsize=15,
                                   background=colors[0],
@@ -231,11 +228,10 @@ screens = [
                                   format=f'{{state}} {{name}}',
                                   ),
 
-                widget.Systray(padding=9, **border(colors[4])),
+                widget.Systray(**border(colors[4])),
 
                 # widget.Battery(
                 #     format='{percent:2.0%}',
-                #     padding=9,
                 #     background=colors[3],
                 #     foreground=colors[1],
                 #     **powerline),
@@ -243,7 +239,6 @@ screens = [
                 # widget.UPowerWidget(
                 #     background=colors[3],
                 #     foreground=colors[1],
-                #     padding=9,
                 #     border_colour=colors[0],
                 #     border_charge_colour=colors[0],
                 #     border_critical_colour=colors[0],
