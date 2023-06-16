@@ -26,57 +26,54 @@
 import subprocess
 import os
 
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile import extension
-# from libqtile.utils import guess_terminal
 
-from qtile_extras import widget as exw
+from qtile_extras import widget
+from qtile_extras.widget.decorations import PowerLineDecoration, BorderDecoration
 
 mod = "mod4"
-terminal = 'alacritty'  # guess_terminal()
+terminal = 'alacritty'
 
 keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
-    # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
+
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
+
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    # Key([mod, "control"], "p", lazy.layout.grow()),
-    # Key([mod, "control"], "n", lazy.layout.shrink()),
+    Key([mod, "control"], "p", lazy.layout.grow()),
+    Key([mod, "control"], "n", lazy.layout.shrink()),
+
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
+
     Key(
         [mod, "shift"],
         "Return",
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
+
     Key([mod], "t", lazy.spawn(terminal), desc="Launch terminal"),
-    # Toggle between different layouts as defined below
+
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
+
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+
     Key([mod], "r", lazy.run_extension(extension.DmenuRun(
             dmenu_prompt="> ",
             background="#262626",
@@ -85,7 +82,9 @@ keys = [
         )
         ), desc="Launch dmenu"),
     Key([mod], "s", lazy.spawn('flameshot gui'), desc="Take a screenshot"),
+
     Key([mod], 'f', lazy.window.toggle_floating(), desc='Toggle floating'),
+
     Key([mod], "w", lazy.to_screen(1)),
     Key([mod], "e", lazy.to_screen(0)),
 
@@ -138,7 +137,9 @@ for i in groups:
 layouts = [
     layout.Columns(border_focus_stack=["#4c7dc7", "#347deb"], border_width=3, margin=4,
                    border_focus='#22b0e3', border_normal='#061e42'),
-    # layout.MonadTall(margin=4),
+
+    layout.MonadTall(border_focus_stack=["#4c7dc7", "#347deb"], border_width=3, margin=4,
+                     border_focus='#22b0e3', border_normal='#061e42'),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -161,16 +162,6 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-light_blue = '#18eaf5'
-blue='#2b79a9'
-darker_blue='#88b8ce'
-dark_blue='#0e4971'
-pink = '#fc7188'
-purple = '#be7b9c'
-yellow = '#fdcf91'
-orange = '#fdc178'
-dark_text = '#262626'
-light_text='#d8dee9'
 font = 'roboto bold'
 
 colors = [["#282c34", "#282c34"],
@@ -196,18 +187,25 @@ tri_left = '◀'
 tri_right = '▶'
 tri_left = ''
 
-def left_sep(background, foreground):
-    return widget.TextBox(background=background, foreground=foreground, text=tri_left, fontsize=22, padding=0)
+
+def border(color):
+    return {
+        'decorations': [
+            BorderDecoration(
+                border_width=[0, 0, 2, 0],
+                colour=color)
+        ]
+    }
 
 
 keyboard_layout = widget.KeyboardLayout(
-                                        configured_keyboards=['us', 'cz'], 
-                                        background=colors[7], 
-                                        foreground=colors[1], 
-                                        font='Inconsolata Bold', 
-                                        fontsize=17, 
-                                        padding=5)
-
+                                        configured_keyboards=['us', 'cz'],
+                                        # background=colors[7],
+                                        foreground=colors[7],
+                                        font='Inconsolata Bold',
+                                        fontsize=17,
+                                        padding=10,
+                                        **border(colors[7]))
 
 keys.append(Key([mod], "m", lazy.widget['keyboardlayout'].next_keyboard()))
 
@@ -218,25 +216,31 @@ screens = [
         wallpaper_mode='fill',
         bottom=bar.Bar(
             [
-                widget.CurrentLayoutIcon(background=colors[0], foreground=colors[2]),
-                # widget.CurrentLayout(background=colors[0], foreground=colors[2]),
+                widget.CurrentLayoutIcon(
+                    background=colors[0],
+                    foreground=colors[2]),
 
                 widget.GroupBox(background=colors[0]),
 
-                widget.WindowName(padding=2, font='roboto', foreground=colors[2], fontsize=15, background=colors[0], for_current_screen=True, format=f'{tri_right}  {{state}} {{name}}'),
+                widget.WindowName(padding=10,
+                                  font='roboto',
+                                  foreground=colors[2],
+                                  fontsize=15,
+                                  background=colors[0],
+                                  for_current_screen=True,
+                                  format=f'{{state}} {{name}}',
+                                  ),
 
-                left_sep(background=colors[0], foreground=colors[4]),
-                widget.Systray(padding=9, background=colors[4]),
-                widget.Sep(foreground=colors[4], background=colors[4], padding=6),
+                widget.Systray(padding=9, **border(colors[4])),
 
-                # left_sep(background=colors[4], foreground=colors[3]),
                 # widget.Battery(
                 #     format='{percent:2.0%}',
-                #     padding=9, 
+                #     padding=9,
                 #     background=colors[3],
-                #     foreground=colors[1]),
+                #     foreground=colors[1],
+                #     **powerline),
 
-                # exw.UPowerWidget(
+                # widget.UPowerWidget(
                 #     background=colors[3],
                 #     foreground=colors[1],
                 #     padding=9,
@@ -250,22 +254,26 @@ screens = [
                 #     text_display_time=3,
                 #     text_charging='{ttf} until fully charged',
                 #     text_discharging='{tte} until empty',
+                #     **powerline,
                 #     ),
 
-                left_sep(background=colors[4], foreground=colors[6]),
                 widget.PulseVolume(
                     update_interval=0.1,
-                    background=colors[6], 
-                    foreground=colors[1]),
+                    foreground=colors[6],
+                    **border(colors[6])
+                    ),
 
-                left_sep(background=colors[6], foreground=colors[7]),
                 keyboard_layout,
 
-                left_sep(background=colors[7], foreground=colors[8]),
-                widget.Clock(format="%a %d.%m.%Y", font=font, background=colors[8], foreground=colors[1]),
+                widget.Clock(format="%a %d.%m.%Y",
+                             font=font,
+                             foreground=colors[8],
+                             **border(colors[8])),
 
-                left_sep(foreground=colors[9], background=colors[8]),
-                widget.Clock(format="%H:%M", font=font, background=colors[9], foreground=colors[1]),
+                widget.Clock(format="%H:%M",
+                             font=font,
+                             foreground=colors[9],
+                             **border(colors[9])),
             ],
             24,
         ),
@@ -318,14 +326,6 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
 wmname = "LG3D"
 
 
