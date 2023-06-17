@@ -218,14 +218,14 @@ screens = [
                     background=colors[0],
                     foreground=colors[2]),
 
-                widget.GroupBox(background=colors[0]),
+                widget.GroupBox(background=colors[0], padding=7),
 
                 widget.WindowName(font='roboto',
                                   foreground=colors[2],
                                   fontsize=15,
                                   background=colors[0],
                                   for_current_screen=True,
-                                  format=f'{{state}} {{name}}',
+                                  format='{state} {name}',
                                   ),
 
                 widget.Systray(**border(colors[4])),
