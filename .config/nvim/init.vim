@@ -30,6 +30,7 @@ set cursorline
 set foldcolumn=1
 set showbreak=↪
 set nolinebreak
+set termguicolors
 
 " Clipboard support requires xclip to be installed on the system
 " sudo pacman -S xclip
@@ -37,11 +38,6 @@ set clipboard=unnamedplus
 
 call plug#begin()
 
-" Plug 'airblade/vim-gitgutter'
-"Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'sonph/onehalf', { 'rtp': 'vim' }
-"Plug 'rakr/vim-one', { 'as': 'vimone' }
-"Plug 'drewtempelmeyer/palenight.vim', { 'as': 'palenight' }
 Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
 Plug 'rose-pine/neovim'
@@ -52,8 +48,10 @@ Plug 'ayu-theme/ayu-vim'
 
 Plug 'frazrepo/vim-rainbow'
 
-Plug 'tpope/vim-commentary'
-Plug 'ap/vim-css-color'
+Plug 'numToStr/Comment.nvim'
+
+Plug 'norcalli/nvim-colorizer.lua'
+
 Plug 'preservim/tagbar'
 Plug 'farmergreg/vim-lastplace'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -65,10 +63,16 @@ Plug 'glepnir/dashboard-nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
+
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+
 Plug 'scalameta/nvim-metals'
 
 Plug 'lewis6991/gitsigns.nvim'
@@ -80,6 +84,10 @@ Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 lua << EOF
+
+require'colorizer'.setup()
+
+require('Comment').setup()
 
 require('gitsigns').setup()
 
@@ -167,8 +175,8 @@ cmp.setup {
   },
 
   mapping = cmp.mapping.preset.insert({
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<CR>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
@@ -190,6 +198,8 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
+    { name = 'buffer' },
+    { name = 'path' },
   },
 }
 
@@ -221,9 +231,9 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
-require('rose-pine').setup({
-    disable_italics = true
-})
+-- require('rose-pine').setup({
+--     disable_italics = true
+-- })
 
 -- require'shade'.setup({
 --   overlay_opacity = 50,
@@ -255,18 +265,8 @@ set signcolumn=yes
 set completeopt-=preview
 
 let g:material_style="darker"
-let g:rose_pine_variant='moon'
 
-set termguicolors
-
-let ayucolor='mirage'
-"colorscheme ayu
-"colors material
 colors onedark
-" colors carbonfox
-
-"colorscheme rose-pine
-"colors nightfox
 
 set background=dark
 
@@ -276,10 +276,10 @@ noremap <Leader>c :set invcursorline<CR>
 
 noremap <Leader>nt :NeoTreeShowToggle<CR>
 
-" Remap <C-l> so I can use the combination elsewhere
+" Remap <C-l> so I can use the combination elsewhere"
 noremap <C-s> <C-l>
 
-" h, j, k are unused, l has been rebound
+" h, j, k are unused, l has been rebound"
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
@@ -288,7 +288,6 @@ noremap <C-l> <C-w>l
 nnoremap <C-n> :vertical res -5<CR>
 nnoremap <C-p> :vertical res +5<CR>
 
-" Find files using Telescope command-line sugar.
 nnoremap <leader>fa <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
