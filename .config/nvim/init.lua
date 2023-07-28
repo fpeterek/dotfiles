@@ -12,11 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
-require("vars")
-require("opts")
 require("keybindings")
-
+require("opts")
 require("plugins")
-require("lsp")
 require("colors")
 

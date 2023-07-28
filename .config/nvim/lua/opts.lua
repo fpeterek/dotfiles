@@ -35,6 +35,8 @@ vim.opt.background = "dark"
 
 vim.cmd("au VimLeave * set guicursor=a:ver25")
 
+vim.g.mapleader = ' '
+
 ts_config = function()
     require('nvim-treesitter.configs').setup {
         -- A list of parser names, or "all"
