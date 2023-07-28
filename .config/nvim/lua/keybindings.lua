@@ -1,12 +1,14 @@
 
 local lsp_opts = { noremap=true, silent=true }
 
+vim.g.mapleader = " "
+
 vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', lsp_opts)
 vim.api.nvim_set_keymap('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', lsp_opts)
 vim.api.nvim_set_keymap('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', lsp_opts)
 vim.api.nvim_set_keymap('n', '<leader>dq', '<cmd>lua vim.diagnostic.setloclist()<CR>', lsp_opts)
 
-vim.api.nvim_set_keymap('n', '<leader>c', '<cmd>set invcursorline<cr>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<leader>cl', '<cmd>set invcursorline<cr>', { noremap=true })
 
 -- Remap <C-l> so I can use the combination elsewhere"
 vim.api.nvim_set_keymap('n', '<C-s>', '<C-l>', { noremap=true })
@@ -42,3 +44,5 @@ vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { nor
 
 vim.api.nvim_set_keymap('n', "<leader>nt", "<cmd>Neotree toggle<cr>", { noremap=true })
 
+vim.keymap.set('n', '<leader>ddg', function() require("duck").hatch("🦆", 3) end, { noremap = true })
+vim.keymap.set('n', '<leader>ddk', function() require("duck").cook() end, { noremap = true })

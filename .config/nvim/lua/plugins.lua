@@ -59,6 +59,9 @@ local plugins = {
 
     "lewis6991/gitsigns.nvim",
 
+    'tamton-aquib/duck.nvim',
+
+    -- Should be the last plugins to load
     "ryanoasis/vim-devicons",
     "kyazdani42/nvim-web-devicons",
 }
