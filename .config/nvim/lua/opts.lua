@@ -29,7 +29,7 @@ vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.breakindent = true
 vim.opt.showmatch = false
-vim.opt.signcolumn = "auto:1-4"
+vim.opt.signcolumn = "yes:3"
 vim.opt.completeopt = "menu"
 vim.opt.background = "dark"
 
