@@ -22,7 +22,10 @@ local plugins = {
 
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
-    "nvim-lualine/lualine.nvim",
+    {
+        "nvim-lualine/lualine.nvim",
+        config = lualine_config
+    },
     "MunifTanjim/nui.nvim",
 
     {

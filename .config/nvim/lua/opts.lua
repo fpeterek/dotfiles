@@ -191,3 +191,7 @@ rainbow_config = function()
         },
     }
 end
+
+lualine_config = function()
+    require('lualine').setup()
+end
