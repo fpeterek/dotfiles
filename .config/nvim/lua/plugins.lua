@@ -1,6 +1,12 @@
 local plugins = {
     "navarasu/onedark.nvim",
-    "numToStr/Comment.nvim",
+
+    {
+        "numToStr/Comment.nvim",
+        lazy = false,
+        config = comment_config
+    },
+
     "norcalli/nvim-colorizer.lua",
 
     {

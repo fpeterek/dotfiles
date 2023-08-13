@@ -195,3 +195,7 @@ end
 lualine_config = function()
     require('lualine').setup()
 end
+
+comment_config = function()
+    require('Comment').setup()
+end
