@@ -7,6 +7,12 @@ local plugins = {
         config = comment_config
     },
 
+    {
+        "numToStr/FTerm.nvim",
+        config = fterm_config,
+        lazy = false
+    },
+
     "norcalli/nvim-colorizer.lua",
 
     {

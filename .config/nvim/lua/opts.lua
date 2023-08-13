@@ -199,3 +199,12 @@ end
 comment_config = function()
     require('Comment').setup()
 end
+
+fterm_config = function()
+    require('FTerm').setup({
+        dimensions = {
+            height = 0.9,
+            width = 0.9,
+        }
+    })
+end

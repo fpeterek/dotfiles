@@ -36,7 +36,7 @@ lsp_on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sh', '<cmd>lua vim.lsp.buf.hover()<CR>', lsp_opts)
 end
 
-vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>TagbarToggle<cr>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<leader>tbt', '<cmd>TagbarToggle<cr>', { noremap=true })
 
 vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>Telescope find_files<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope git_files<cr>', { noremap=true })
@@ -46,3 +46,10 @@ vim.api.nvim_set_keymap('n', "<leader>nt", "<cmd>Neotree toggle<cr>", { noremap=
 
 vim.keymap.set('n', '<leader>ddg', function() require("duck").hatch("🦆", 3) end, { noremap = true })
 vim.keymap.set('n', '<leader>ddk', function() require("duck").cook() end, { noremap = true })
+
+vim.api.nvim_create_user_command('FTermOpen', function() require('FTerm').open() end, { bang = true })
+vim.api.nvim_create_user_command('FTermClose', function() require('FTerm').close() end, { bang = true })
+vim.api.nvim_create_user_command('FTermExit', function() require('FTerm').exit() end, { bang = true })
+vim.api.nvim_create_user_command('FTermToggle', function() require('FTerm').toggle() end, { bang = true })
+
+vim.keymap.set('n', '<leader>tt', '<cmd>FTermToggle<CR>', { noremap = true })
