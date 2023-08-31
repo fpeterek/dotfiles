@@ -77,11 +77,28 @@ neotree_config = function()
 end
 
 nvim_lspconfig_config = function()
-    require('lspconfig').clangd.setup{}
-    require('lspconfig').rust_analyzer.setup{}
-    require('lspconfig').kotlin_language_server.setup{}
-    require('lspconfig').pylsp.setup{}
-    require('lspconfig').hls.setup{}
+    require('lspconfig').clangd.setup { }
+    require('lspconfig').rust_analyzer.setup { }
+    require('lspconfig').kotlin_language_server.setup { }
+
+    require('lspconfig').pylsp.setup {
+        settings = {
+            pylsp = {
+                plugins = {
+                    autopep8 = { enabled = false },
+                    pycodestyle = { enabled = false },
+                    mccabe = { enabled = false },
+                    pyflakes = { enabled = false },
+                    flake8 = { enabled = true },
+                    preload = { enabled = false },
+                    yapf = { enabled = true }
+                },
+                configurationSources = { 'flake8' }
+            }
+        }
+    }
+
+    require('lspconfig').hls.setup { }
 end
 
 cmp_nvim_lsp_config = function()
