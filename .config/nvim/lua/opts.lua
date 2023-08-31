@@ -38,7 +38,7 @@ vim.cmd("au VimLeave * set guicursor=a:ver25")
 ts_config = function()
     require('nvim-treesitter.configs').setup {
         -- A list of parser names, or "all"
-        ensure_installed = { "c", "cpp", "rust", "java", "kotlin", "scala" },
+        ensure_installed = { "c", "cpp", "rust", "java", "kotlin", "scala", "python" },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
