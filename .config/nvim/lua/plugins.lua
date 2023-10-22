@@ -74,7 +74,11 @@ local plugins = {
 
     "lewis6991/gitsigns.nvim",
 
-    'tamton-aquib/duck.nvim',
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        config = ibl_config
+    },
 
     -- Should be the last plugins to load
     "ryanoasis/vim-devicons",

@@ -32,6 +32,7 @@ vim.opt.showmatch = false
 vim.opt.signcolumn = "yes:3"
 vim.opt.completeopt = "menu"
 vim.opt.background = "dark"
+vim.opt.colorcolumn = '100'
 
 vim.cmd("au VimLeave * set guicursor=a:ver25")
 
@@ -86,14 +87,26 @@ nvim_lspconfig_config = function()
             pylsp = {
                 plugins = {
                     autopep8 = { enabled = false },
+                    black = { enabled = false },
+
                     pycodestyle = { enabled = false },
-                    mccabe = { enabled = false },
                     pyflakes = { enabled = false },
-                    flake8 = { enabled = true },
+                    pylint = { enabled = false },
+
+                    mccabe = { enabled = false },
                     preload = { enabled = false },
-                    yapf = { enabled = true }
+
+                    jedi_completion = { fuzzy = true },
+
+                    flake8 = {
+                        enabled = true,
+                        ignore = { 'E501' },
+                        maxLineLength = 100,
+                    },
+
+                    yapf = { enabled = true, }
                 },
-                configurationSources = { 'flake8' }
+                configurationSources = { 'flake8' },
             }
         }
     }
@@ -222,6 +235,17 @@ fterm_config = function()
         dimensions = {
             height = 0.9,
             width = 0.9,
+        }
+    })
+end
+
+ibl_config = function()
+    require('ibl').setup({
+        indent = {
+            char = '▏'
+        },
+        scope = {
+            enabled = false
         }
     })
 end
