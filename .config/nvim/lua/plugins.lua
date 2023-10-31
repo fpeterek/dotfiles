@@ -80,6 +80,12 @@ local plugins = {
         config = ibl_config
     },
 
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = todo_config,
+    },
+
     -- Should be the last plugins to load
     "ryanoasis/vim-devicons",
     "kyazdani42/nvim-web-devicons",

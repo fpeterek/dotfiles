@@ -249,3 +249,7 @@ ibl_config = function()
         }
     })
 end
+
+todo_config = function()
+    require('todo-comments').setup()
+end
