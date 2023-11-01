@@ -86,6 +86,20 @@ local plugins = {
         config = todo_config,
     },
 
+    {
+        "rcarriga/nvim-notify",
+        config = notify_config,
+    },
+
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        config = noice_config,
+    },
+
     -- Should be the last plugins to load
     "ryanoasis/vim-devicons",
     "kyazdani42/nvim-web-devicons",
