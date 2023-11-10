@@ -258,7 +258,9 @@ todo_config = function()
 end
 
 notify_config = function()
-    require('notify').setup()
+    require('notify').setup({
+        stages = 'static'
+    })
 end
 
 noice_config = function()
@@ -279,5 +281,54 @@ noice_config = function()
             inc_rename = false, -- enables an input dialog for inc-rename.nvim
             lsp_doc_border = false, -- add a border to hover docs and signature help
         },
+
+        routes = {
+            {
+                filter = {
+                    event = "msg_show",
+                    kind = "",
+                    find = "written",
+                },
+                opts = { skip = true },
+            },
+        },
+
+        views = {
+            cmdline_popup = {
+                position = {
+                    row = "45%",
+                    col = "50%",
+                },
+                size = {
+                    width = 60,
+                    height = "auto",
+                },
+            },
+            popupmenu = {
+                relative = "editor",
+                position = {
+                    row = "55%",
+                    col = "50%",
+                },
+                size = {
+                    width = 60,
+                    height = 10,
+                },
+                border = {
+                    style = "rounded",
+                    padding = { 0, 1 },
+                },
+                win_options = {
+                    winhighlight = {
+                        Normal = "Normal",
+                        FloatBorder = "DiagnosticInfo"
+                    },
+                },
+            },
+        },
     })
+end
+
+trouble_config = function()
+    require('trouble').setup()
 end

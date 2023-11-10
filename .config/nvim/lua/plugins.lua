@@ -100,9 +100,17 @@ local plugins = {
         config = noice_config,
     },
 
+    {
+        "folke/trouble.nvim",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = trouble_config,
+    },
+
     -- Should be the last plugins to load
-    "ryanoasis/vim-devicons",
-    "kyazdani42/nvim-web-devicons",
+    -- "ryanoasis/vim-devicons",
+    "nvim-tree/nvim-web-devicons",
 }
 
 require("lazy").setup(plugins)
