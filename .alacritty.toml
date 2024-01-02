@@ -1,0 +1,38 @@
+[colors.bright]
+black = "#686868"
+blue = "#65bddb"
+cyan = "#1be1f7"
+green = "#23fe6e"
+magenta = "#f17676"
+red = "#f76868"
+white = "#ffffff"
+yellow = "#ffd165"
+
+[colors.normal]
+black = "#212733"
+blue = "#60b8d6"
+cyan = "#34d8eb"
+green = "#22df61"
+magenta = "#ec7171"
+red = "#ed4e4e"
+white = "#fafafa"
+yellow = "#fdcc60"
+
+[colors.primary]
+background = "#27272d"
+bright_foreground = "#f28779"
+foreground = "#cbccc6"
+
+[cursor]
+style = "Beam"
+
+[font]
+size = 15
+
+[font.normal]
+family = "InconsolataNerdFont Mono"
+style = "Regular"
+
+[window.dimensions]
+columns = 140
+lines = 36
