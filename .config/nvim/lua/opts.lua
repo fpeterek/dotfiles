@@ -41,7 +41,7 @@ ts_config = function()
         -- A list of parser names, or "all"
         ensure_installed = {
             "c", "cpp", "rust", "java", "kotlin", "scala", "python", "lua", "vim", "bash",
-            "regex", "markdown", "markdown_inline"
+            "regex", "markdown", "markdown_inline", "haskell",
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -167,8 +167,8 @@ nvim_cmp_config = function()
       sources = {
         { name = 'nvim_lsp' },
         { name = 'vsnip' },
-        { name = 'buffer' },
-        { name = 'path' },
+        -- { name = 'buffer' },
+        -- { name = 'path' },
       },
     }
 end
