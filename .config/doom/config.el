@@ -51,9 +51,17 @@
 
 (setq-default display-fill-column-indicator-column 100)
 
+(require 'company)
+(setq company-idle-delay 0.1
+      company-minimum-prefix-length 1)
+
+(setq completion-styles '(flex))
+
 (setq company-selection-wrap-around t)
 
 (setq scroll-margin 5)
+
+(setq next-error-find-buffer-function 'next-error-buffer-unnavigated-current)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -91,7 +99,7 @@
   :leader
   :desc "Toggle Neotree"
     "n t"
-    #'neotree-toggle)
+    #'treemacs)
 
 (map!
   :leader
@@ -99,17 +107,63 @@
     "v t"
     #'vterm)
 
-(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+(map!
+  :leader
+  :desc "Show Hover"
+    "s h"
+    #'lsp-ui-doc-show)
 
-(define-key evil-normal-state-map (kbd "C-n") 'shrink-window-horizontally)
-(define-key evil-normal-state-map (kbd "C-p") 'enlarge-window-horizontally)
+(map!
+  :leader
+  :desc "Next Error"
+    "d n"
+    #'next-error)
 
-(require 'company)
-(setq company-idle-delay 0.1
-      company-minimum-prefix-len 2)
+(map!
+  :leader
+  :desc "Previous Error"
+    "d p"
+    #'previous-error)
+
+(map!
+  :leader
+  :desc "Format Buffer"
+    "c f"
+    #'lsp-format-buffer)
+
+(map!
+  :leader
+  :desc "Format Buffer"
+    "f g"
+    #'+default/search-project)
+
+(defvar my/keys-keymap (make-keymap)
+  "Keymap for my/keys-mode")
+
+(define-minor-mode my/keys-mode
+  "Minor mode for my personal keybindings."
+  :init-value t
+  :global t
+  :keymap my/keys-keymap)
+
+;; The keymaps in `emulation-mode-map-alists' take precedence over
+;; `minor-mode-map-alist'
+(add-to-list 'emulation-mode-map-alists
+             `((my/keys-mode . ,my/keys-keymap)))
+
+(define-key my/keys-keymap (kbd "C-h") 'evil-window-left)
+(define-key my/keys-keymap (kbd "C-j") 'evil-window-down)
+(define-key my/keys-keymap (kbd "C-k") 'evil-window-up)
+(define-key my/keys-keymap (kbd "C-l") 'evil-window-right)
+
+(define-key evil-normal-state-map (kbd "C-<left>") 'shrink-window-horizontally)
+(define-key evil-normal-state-map (kbd "C-<right>") 'enlarge-window-horizontally)
+(define-key evil-normal-state-map (kbd "C-<up>") 'shrink-window)
+(define-key evil-normal-state-map (kbd "C-<down>") 'enlarge-window)
+
+
+
+(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
