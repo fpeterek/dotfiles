@@ -40,6 +40,18 @@
 (setq doom-font 
     (font-spec :family "Fira Code" :size 17))
 
+(set-face-bold-p 'bold nil)
+
+(defun cm/clean-fonts()
+  "Eliminate bold and underline fonts"
+  (interactive)
+  (mapc
+    (lambda (face)
+      (set-face-attribute face nil :weight 'normal :underline nil))
+    (face-list)))
+
+(add-hook 'tree-sitter-mode-hook #'cm/clean-fonts)
+
 ; (setq doom-font 
 ;      (font-spec :family "Fira Code Regular Nerd Font Complete Mono" :size 17))
 
@@ -161,9 +173,13 @@
 (define-key evil-normal-state-map (kbd "C-<up>") 'shrink-window)
 (define-key evil-normal-state-map (kbd "C-<down>") 'enlarge-window)
 
-
-
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+
+(use-package! tree-sitter
+  :config
+  (require 'tree-sitter-langs)
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
