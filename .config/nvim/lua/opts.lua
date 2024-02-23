@@ -226,7 +226,17 @@ rainbow_config = function()
 end
 
 lualine_config = function()
-    require('lualine').setup()
+    require('lualine').setup({
+
+        options = {
+            theme = 'auto'
+        },
+
+        sections = {
+            lualine_c = {'buffers'},
+        },
+
+    })
 end
 
 comment_config = function()
