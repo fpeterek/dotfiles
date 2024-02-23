@@ -279,7 +279,12 @@ noice_config = function()
             command_palette = true, -- position the cmdline and popupmenu together
             long_message_to_split = true, -- long messages will be sent to a split
             inc_rename = false, -- enables an input dialog for inc-rename.nvim
-            lsp_doc_border = false, -- add a border to hover docs and signature help
+            lsp_doc_border = true, -- add a border to hover docs and signature help
+        },
+
+        cmdline = {
+            enable = true,
+            view = "cmdline",
         },
 
         routes = {
@@ -293,17 +298,24 @@ noice_config = function()
             },
         },
 
+        messages = {
+            enabled = true,
+            view = "mini",
+            view_error = "mini",
+            view_warn = "mini",
+        },
+
         views = {
-            cmdline_popup = {
-                position = {
-                    row = "45%",
-                    col = "50%",
-                },
-                size = {
-                    width = 60,
-                    height = "auto",
-                },
-            },
+            -- cmdline_popup = {
+            --     position = {
+            --         row = "45%",
+            --         col = "50%",
+            --     },
+            --     size = {
+            --         width = 60,
+            --         height = "auto",
+            --     },
+            -- },
             popupmenu = {
                 relative = "editor",
                 position = {
@@ -331,4 +343,10 @@ end
 
 trouble_config = function()
     require('trouble').setup()
+end
+
+surfers_config = function()
+    require('nvim-surfers').setup({
+        use_tmux = true,
+    })
 end

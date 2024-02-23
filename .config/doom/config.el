@@ -145,9 +145,15 @@
 
 (map!
   :leader
-  :desc "Format Buffer"
+  :desc "Grep Project"
     "f g"
     #'+default/search-project)
+
+(map!
+  :leader
+  :desc "Find File"
+    "f f"
+    #'project-find-file)
 
 (defvar my/keys-keymap (make-keymap)
   "Keymap for my/keys-mode")
@@ -180,6 +186,9 @@
   (require 'tree-sitter-langs)
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+(use-package! treemacs-all-the-icons)
+(treemacs-load-theme "all-the-icons")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

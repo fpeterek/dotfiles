@@ -105,7 +105,13 @@ local plugins = {
         dependencies = {
             "nvim-tree/nvim-web-devicons"
         },
-        config = trouble_config,
+        opts = {},
+        -- config = trouble_config,
+    },
+
+    {
+        'fpeterek/nvim-surfers',
+        config = surfers_config,
     },
 
     -- Should be the last plugins to load

@@ -41,11 +41,9 @@ vim.api.nvim_set_keymap('n', '<leader>tbt', '<cmd>TagbarToggle<cr>', { noremap=t
 vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>Telescope find_files<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope git_files<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap=true })
 
 vim.api.nvim_set_keymap('n', "<leader>nt", "<cmd>Neotree toggle<cr>", { noremap=true })
-
-vim.keymap.set('n', '<leader>ddg', function() require("duck").hatch("🦆", 3) end, { noremap = true })
-vim.keymap.set('n', '<leader>ddk', function() require("duck").cook() end, { noremap = true })
 
 vim.api.nvim_create_user_command('FTermOpen', function() require('FTerm').open() end, { bang = true })
 vim.api.nvim_create_user_command('FTermClose', function() require('FTerm').close() end, { bang = true })
