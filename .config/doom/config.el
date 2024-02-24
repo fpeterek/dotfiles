@@ -90,6 +90,11 @@
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 
+(define-key evil-normal-state-map (kbd "g C-a") 'evil-numbers/inc-at-pt-incremental)
+(define-key evil-visual-state-map (kbd "g C-a") 'evil-numbers/inc-at-pt-incremental)
+(define-key evil-normal-state-map (kbd "g C-x") 'evil-numbers/dec-at-pt-incremental)
+(define-key evil-visual-state-map (kbd "g C-x") 'evil-numbers/dec-at-pt-incremental)
+
 (map! 
   :leader 
   :desc "Goto definition"
@@ -209,6 +214,13 @@
 
 (setq c-default-style "stroustrup"
       c-basic-offset 4)
+
+(mapc #'evil-declare-change-repeat
+      '(company-complete-common
+        company-select-next
+        company-select-previous
+        company-complete-selection
+        ))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
