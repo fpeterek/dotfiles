@@ -195,6 +195,21 @@
   :config
   (setq neo-theme 'icons))
 
+(defun c-mode-custom-hook ()
+  (c-set-offset 'substatement-open 0)
+  (setq c++-tab-always-indent t)
+  (setq c-basic-offset 4)
+  (setq c-indent-level 4)
+
+  (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60))
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil))
+
+(add-hook 'c-mode-common-hook 'c-mode-custom-hook)
+
+(setq c-default-style "stroustrup"
+      c-basic-offset 4)
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
