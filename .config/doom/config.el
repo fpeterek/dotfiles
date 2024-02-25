@@ -215,6 +215,10 @@
 (setq c-default-style "stroustrup"
       c-basic-offset 4)
 
+(defun cpp-namespace-indent ()
+  (c-set-offset 'innamespace [0]))
+(add-hook 'c++-mode-hook 'cpp-namespace-indent)
+
 (mapc #'evil-declare-change-repeat
       '(company-complete-common
         company-select-next
