@@ -360,3 +360,7 @@ surfers_config = function()
         use_tmux = true,
     })
 end
+
+gitsigns_config = function()
+    require('gitsigns').setup()
+end

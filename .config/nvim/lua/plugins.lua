@@ -72,7 +72,10 @@ local plugins = {
         config = metals_config
     },
 
-    "lewis6991/gitsigns.nvim",
+    {
+        "lewis6991/gitsigns.nvim",
+        config = gitsigns_config,
+    },
 
     {
         "lukas-reineke/indent-blankline.nvim",
