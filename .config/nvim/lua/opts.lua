@@ -81,8 +81,59 @@ neotree_config = function()
 end
 
 nvim_lspconfig_config = function()
-    require('lspconfig').clangd.setup { }
-    require('lspconfig').rust_analyzer.setup { }
+    require('lspconfig').clangd.setup {
+        settings = {
+            clangd = {
+                InlayHints = {
+                    Designators = true,
+                    Enabled = true,
+                    ParameterNames = true,
+                    DeducedTypes = true,
+                },
+                fallbackFlags = { "-std=c++23", "-Wall", "-Wextra" },
+            }
+        }
+    }
+
+    require('lspconfig').rust_analyzer.setup {
+        settings = {
+            ["rust-analyzer"] = {
+                  inlayHints = {
+                      bindingModeHints = {
+                          enable = false,
+                      },
+                      chainingHints = {
+                          enable = true,
+                      },
+                      closingBraceHints = {
+                          enable = true,
+                          minLines = 25,
+                      },
+                      closureReturnTypeHints = {
+                          enable = "never",
+                      },
+                      lifetimeElisionHints = {
+                          enable = "never",
+                          useParameterNames = false,
+                      },
+                      maxLength = 25,
+                      parameterHints = {
+                          enable = true,
+                      },
+                      reborrowHints = {
+                          enable = "never",
+                      },
+                      renderColons = true,
+                      typeHints = {
+                          enable = true,
+                          hideClosureInitialization = false,
+                          hideNamedConstructor = false,
+                      },
+                },
+            }
+        }
+    }
+
     require('lspconfig').kotlin_language_server.setup { }
 
     require('lspconfig').pylsp.setup {
@@ -363,4 +414,15 @@ end
 
 gitsigns_config = function()
     require('gitsigns').setup()
+end
+
+lsp_lines_config = function()
+    vim.diagnostic.config({ 
+        virtual_lines = {
+            only_current_line = true,
+            highlight_whole_line = false,
+        },
+    })
+    require('lsp_lines').setup({
+    })
 end

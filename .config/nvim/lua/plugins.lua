@@ -113,6 +113,11 @@ local plugins = {
     },
 
     {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = lsp_lines_config,
+    },
+
+    {
         'fpeterek/nvim-surfers',
         config = surfers_config,
     },
