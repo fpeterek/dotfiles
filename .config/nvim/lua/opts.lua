@@ -81,6 +81,7 @@ neotree_config = function()
 end
 
 nvim_lspconfig_config = function()
+
     require('lspconfig').clangd.setup {
         settings = {
             clangd = {
@@ -90,7 +91,7 @@ nvim_lspconfig_config = function()
                     ParameterNames = true,
                     DeducedTypes = true,
                 },
-                fallbackFlags = { "-std=c++23", "-Wall", "-Wextra" },
+                fallbackFlags = { "-std=c++23", "-Wall", "-Wextra", "-Wconversion" },
             }
         }
     }
@@ -141,24 +142,27 @@ nvim_lspconfig_config = function()
             pylsp = {
                 plugins = {
                     autopep8 = { enabled = false },
-                    black = { enabled = false },
+                    black = { enabled = true },
+                    yapf = { enabled = false, },
 
-                    pycodestyle = { enabled = false },
-                    pyflakes = { enabled = false },
+                    pycodestyle = {
+                        enabled = false,
+                        maxLineLength = 100,
+                    }, --
+                    pyflakes = { enabled = false }, --
                     pylint = { enabled = false },
 
-                    mccabe = { enabled = false },
+                    mccabe = { enabled = false }, --
                     preload = { enabled = false },
 
                     jedi_completion = { fuzzy = true },
 
                     flake8 = {
                         enabled = true,
-                        ignore = { 'E501' },
+                        ignore = { 'E501', 'C901' },
                         maxLineLength = 100,
                     },
 
-                    yapf = { enabled = true, }
                 },
                 configurationSources = { 'flake8' },
             }
@@ -284,7 +288,7 @@ lualine_config = function()
         },
 
         sections = {
-            lualine_c = {'buffers'},
+            lualine_c = { 'buffers', },
         },
 
     })
@@ -418,11 +422,16 @@ end
 
 lsp_lines_config = function()
     vim.diagnostic.config({ 
+        virtual_text = false,
         virtual_lines = {
-            only_current_line = true,
+            -- only_current_line = true,
             highlight_whole_line = false,
         },
     })
     require('lsp_lines').setup({
     })
+end
+
+colorizer_config = function()
+    require('colorizer').setup()
 end

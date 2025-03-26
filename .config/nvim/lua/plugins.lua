@@ -13,7 +13,10 @@ local plugins = {
         lazy = false
     },
 
-    "norcalli/nvim-colorizer.lua",
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = colorizer_config
+    },
 
     {
         "preservim/tagbar",
