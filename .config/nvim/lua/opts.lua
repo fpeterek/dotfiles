@@ -33,6 +33,7 @@ vim.opt.signcolumn = "yes:3"
 vim.opt.completeopt = "menu"
 vim.opt.background = "dark"
 vim.opt.colorcolumn = '100'
+vim.opt.wrap = false
 
 vim.cmd("au VimLeave * set guicursor=a:ver25")
 
