@@ -47,6 +47,7 @@ vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>Telescope find_files<cr>', { no
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope git_files<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<leader>fc', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { noremap=true })
 
 vim.api.nvim_set_keymap('n', "<leader>nt", "<cmd>Neotree toggle<cr>", { noremap=true })
 
