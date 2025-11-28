@@ -3,9 +3,11 @@ black = "#686868"
 blue = "#65bddb"
 cyan = "#1be1f7"
 green = "#23fe6e"
-magenta = "#f17676"
+# magenta = "#f17676"
+# magenta = "#cfbafa"
+magenta = "#ae9dd1"
 red = "#f76868"
-white = "#ffffff"
+white = "#fafafa"
 yellow = "#ffd165"
 
 [colors.normal]
@@ -13,9 +15,11 @@ black = "#212733"
 blue = "#60b8d6"
 cyan = "#34d8eb"
 green = "#22df61"
-magenta = "#ec7171"
+# magenta = "#ec7171"
+# magenta = "#d4bfff"
+magenta = "#8e7db0"
 red = "#ed4e4e"
-white = "#fafafa"
+white = "#f8f8f8"
 yellow = "#fdcc60"
 
 [colors.primary]
@@ -27,10 +31,10 @@ foreground = "#cbccc6"
 style = "Beam"
 
 [font]
-size = 15
+size = 14
 
 [font.normal]
-family = "InconsolataNerdFont Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [window.dimensions]
