@@ -2,18 +2,6 @@ local plugins = {
     "navarasu/onedark.nvim",
 
     {
-        "numToStr/Comment.nvim",
-        lazy = false,
-        config = comment_config
-    },
-
-    {
-        "numToStr/FTerm.nvim",
-        config = fterm_config,
-        lazy = false
-    },
-
-    {
         "norcalli/nvim-colorizer.lua",
         config = colorizer_config
     },
@@ -45,13 +33,16 @@ local plugins = {
 
     {
         "nvim-neo-tree/neo-tree.nvim",
-        config = neotree_config
+        config = neotree_config,
+        depends = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons",
+        },
+        lazy = false,
     },
 
-    {
-        "neovim/nvim-lspconfig",
-        config = nvim_lspconfig_config
-    },
+    "neovim/nvim-lspconfig",
 
     {
         "hrsh7th/cmp-nvim-lsp",
@@ -66,9 +57,6 @@ local plugins = {
         "hrsh7th/nvim-cmp",
         config = nvim_cmp_config
     },
-
-    "hrsh7th/cmp-vsnip",
-    "hrsh7th/vim-vsnip",
 
     {
         "scalameta/nvim-metals",
@@ -107,15 +95,6 @@ local plugins = {
     },
 
     {
-        "folke/trouble.nvim",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons"
-        },
-        opts = {},
-        -- config = trouble_config,
-    },
-
-    {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         config = lsp_lines_config,
     },
@@ -126,7 +105,6 @@ local plugins = {
     },
 
     -- Should be the last plugins to load
-    -- "ryanoasis/vim-devicons",
     "nvim-tree/nvim-web-devicons",
 }
 

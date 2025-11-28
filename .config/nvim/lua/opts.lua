@@ -6,6 +6,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.cindent = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wildmenu = true
@@ -30,10 +31,20 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.breakindent = true
 vim.opt.showmatch = false
 vim.opt.signcolumn = "yes:3"
-vim.opt.completeopt = "menu"
 vim.opt.background = "dark"
 vim.opt.colorcolumn = '100'
 vim.opt.wrap = false
+
+vim.opt.completeopt = "fuzzy,menuone,noselect,popup"
+
+vim.opt.pumheight = 7
+
+vim.g.python_indent = {
+    open_paren = 'shiftwidth()',
+    continue = 'shiftwidth() * 2',
+    closed_paren_align_last_line = false,
+}
+
 
 vim.cmd("au VimLeave * set guicursor=a:ver25")
 
@@ -81,110 +92,16 @@ neotree_config = function()
     })
 end
 
-nvim_lspconfig_config = function()
-
-    require('lspconfig').clangd.setup {
-        settings = {
-            clangd = {
-                InlayHints = {
-                    Designators = true,
-                    Enabled = true,
-                    ParameterNames = true,
-                    DeducedTypes = true,
-                },
-                fallbackFlags = { "-std=c++23", "-Wall", "-Wextra", "-Wconversion" },
-            }
-        }
-    }
-
-    require('lspconfig').rust_analyzer.setup {
-        settings = {
-            ["rust-analyzer"] = {
-                  inlayHints = {
-                      bindingModeHints = {
-                          enable = false,
-                      },
-                      chainingHints = {
-                          enable = true,
-                      },
-                      closingBraceHints = {
-                          enable = true,
-                          minLines = 25,
-                      },
-                      closureReturnTypeHints = {
-                          enable = "never",
-                      },
-                      lifetimeElisionHints = {
-                          enable = "never",
-                          useParameterNames = false,
-                      },
-                      maxLength = 25,
-                      parameterHints = {
-                          enable = true,
-                      },
-                      reborrowHints = {
-                          enable = "never",
-                      },
-                      renderColons = true,
-                      typeHints = {
-                          enable = true,
-                          hideClosureInitialization = false,
-                          hideNamedConstructor = false,
-                      },
-                },
-            }
-        }
-    }
-
-    require('lspconfig').kotlin_language_server.setup { }
-
-    require('lspconfig').pylsp.setup {
-        settings = {
-            pylsp = {
-                plugins = {
-                    autopep8 = { enabled = false },
-                    black = { enabled = true },
-                    yapf = { enabled = false, },
-
-                    pycodestyle = {
-                        enabled = false,
-                        maxLineLength = 100,
-                    }, --
-                    pyflakes = { enabled = false }, --
-                    pylint = { enabled = false },
-
-                    mccabe = { enabled = false }, --
-                    preload = { enabled = false },
-
-                    jedi_completion = { fuzzy = true },
-
-                    flake8 = {
-                        enabled = true,
-                        ignore = { 'E501', 'C901' },
-                        maxLineLength = 100,
-                    },
-
-                },
-                configurationSources = { 'flake8' },
-            }
-        }
-    }
-
-    require('lspconfig').hls.setup { }
-end
-
 cmp_nvim_lsp_config = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-    -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
     local servers = { 'clangd', 'rust_analyzer', 'pylsp', 'kotlin_language_server', 'hls' }
-    local lspconfig = require('lspconfig')
+
     for _, lsp in ipairs(servers) do
-      lspconfig[lsp].setup {
-        on_attach = lsp_on_attach,
+      vim.lsp.config(lsp, {
         capabilities = capabilities,
-      }
+      })
     end
 end
 
@@ -192,12 +109,6 @@ nvim_cmp_config = function()
     local cmp = require('cmp')
 
     cmp.setup {
-      snippet = {
-        -- REQUIRED - you must specify a snippet engine
-        expand = function(args)
-          vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        end,
-      },
 
       mapping = cmp.mapping.preset.insert({
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -205,24 +116,9 @@ nvim_cmp_config = function()
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
       }),
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'vsnip' },
         -- { name = 'buffer' },
         -- { name = 'path' },
       },
@@ -238,9 +134,9 @@ metals_config = function()
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    metals_conf.capabilities = capabilities
 
     metals_conf.on_attach = lsp_on_attach
-    metals_conf.capabilities = capabilities
     metals_conf.init_options.statusBarProvider = "on"
 
     -- Autocmd that will actually be in charging of starting the whole thing
@@ -282,30 +178,8 @@ rainbow_config = function()
 end
 
 lualine_config = function()
-    require('lualine').setup({
-
-        options = {
-            theme = 'auto'
-        },
-
-        sections = {
-            lualine_c = { 'buffers', },
-        },
-
-    })
-end
-
-comment_config = function()
-    require('Comment').setup()
-end
-
-fterm_config = function()
-    require('FTerm').setup({
-        dimensions = {
-            height = 0.9,
-            width = 0.9,
-        }
-    })
+    conf = require('lualine-conf')
+    require('lualine').setup(conf)
 end
 
 ibl_config = function()
@@ -327,6 +201,7 @@ notify_config = function()
     require('notify').setup({
         stages = 'static'
     })
+    vim.notify = require('notify')
 end
 
 noice_config = function()
@@ -423,9 +298,9 @@ end
 
 lsp_lines_config = function()
     vim.diagnostic.config({ 
-        virtual_text = false,
+        virtual_text = true,
         virtual_lines = {
-            -- only_current_line = true,
+            only_current_line = true,
             highlight_whole_line = false,
         },
     })

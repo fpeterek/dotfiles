@@ -16,4 +16,5 @@ require("keybindings")
 require("opts")
 require("plugins")
 require("colors")
+require("lsps")
 
