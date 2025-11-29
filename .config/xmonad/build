@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# ghc
+#     --make xmonad.hs
+#     -i
+#     -ilib
+#     -fforce-recomp
+#     -main-is main
+#     -dynamic -v0 -outputdir /home/fpeterek/.cache/xmonad/build-x86_64-linux -o /home/fpeterek/.cache/xmonad/xmonad-x86_64-linux
+
+echo "$@"
+
+SRC_DIR=~/xmonad/
+EXE_NAME=xmonad
+CONF_FILE=~/.config/xmonad/xmonad.hs
+
+unset STACK_YAML
+
+cd $SRC_DIR
+stack build
+
+exec stack ghc --   \
+  --make $CONF_FILE \
+  -i                \
+  -ilib             \
+  -fforce-recomp    \
+  -main-is main     \
+  -v0               \
+  -o "$1"
+
+ln -f -T $(stack exec -- which $EXE_NAME) $1

@@ -1,5 +1,39 @@
 local plugins = {
+
     "navarasu/onedark.nvim",
+
+    {
+        "Yazeed1s/oh-lucy.nvim",
+        config = function() 
+            vim.g.oh_lucy_italic_keywords = true
+            vim.g.oh_lucy_italic_variables = true
+            vim.g.oh_lucy_evening_italic_keywords = true
+            vim.g.oh_lucy_evening_italic_variables = true
+        end
+    },
+
+    "akinsho/horizon.nvim",
+
+    {
+        "NTBBloodbath/doom-one.nvim",
+        config = function() 
+            vim.g.doom_one_cursor_coloring = true
+            vim.g.doom_one_italic_comments = true
+            vim.g.doom_one_plugin_telescope = true
+        end
+    },
+
+    {
+        "rose-pine/neovim",
+        config = function() 
+            require("rose-pine").setup({
+                styles = {
+                    italic = false,
+                    bold = false,
+                }
+            })
+        end
+    },
 
     {
         "norcalli/nvim-colorizer.lua",

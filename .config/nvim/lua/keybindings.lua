@@ -21,6 +21,8 @@ vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap=true })
 vim.api.nvim_set_keymap('n', '<C-n>', '<cmd>vertical res -5<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<C-p>', '<cmd>vertical res +5<cr>', { noremap=true })
 
+vim.api.nvim_set_keymap('i', '<C-Space>', '<C-x><C-n>', { noremap=true })
+
 -- Whilst, technically, lsp_on_attach is a variable, I choose to define it here
 -- as the variable is used to define keybindings
 lsp_buf_keybindings = function(bufnr)
