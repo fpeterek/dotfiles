@@ -8,15 +8,24 @@ Config { overrideRedirect = False
        , commands = [ Run Cpu
                         [ "-L", "3"
                         , "-H", "50"
-                        , "--high"  , "red"
-                        , "--normal", "green"
+                        , "--high"  , "#ed4e4e"
+                        , "--normal", "#22df61"
                         ] 10
                     , Run Kbd []
                     , Run Memory ["--template", "Mem: <usedratio>%"] 10
-                    , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
+                    , Run Date "%a %d.%m.%Y <fc=#8be9fd>%H:%M</fc>" "date" 10
                     , Run XMonadLog
+                    , Run Battery
+                        [  "-t", "<acstatus>: <left>%",
+                           "--",
+	                       -- "-c", "charge_full",
+                           "-O", "AC",
+                           "-o", "Bat",
+                           "-L", "20",
+                           "-l", "#ed4e4e"
+                        ] 10
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %kbd% | %alsa:default:Master% | %cpu% | %memory% | %date% "
+       , template = "%XMonadLog% }{ %kbd% | %alsa:default:Master% | %cpu% | %memory% | %battery% | %date% "
        }
