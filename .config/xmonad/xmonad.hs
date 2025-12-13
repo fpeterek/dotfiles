@@ -62,7 +62,7 @@ focusedBorderColor' :: String
 focusedBorderColor' = "#22b0e3"
 
 borderWidth' :: Dimension
-borderWidth' = 4
+borderWidth' = 2
 
 handleEventHook' = swallowEventHook (className =? "Alacritty" <||> className =? "kitty") (return True)
 
@@ -236,11 +236,11 @@ xmobarPP' = def
     ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
 
     blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta  = xmobarColor "#ff79c6" ""
-    blue     = xmobarColor "#bd93f9" ""
+    magenta  = xmobarColor "#ae9dd1" "" -- fg bg
+    blue     = xmobarColor "#6dcbfa" ""
     white    = xmobarColor "#f8f8f2" ""
-    yellow   = xmobarColor "#f1fa8c" ""
-    red      = xmobarColor "#ff5555" ""
-    lowWhite = xmobarColor "#bbbbbb" ""
+    yellow   = xmobarColor "#23fe6e" ""
+    red      = xmobarColor "#f76868" ""
+    lowWhite = xmobarColor "#d9d7ce" ""
 
 
