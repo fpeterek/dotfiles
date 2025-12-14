@@ -27,8 +27,11 @@ background = "#27272d"
 bright_foreground = "#f28779"
 foreground = "#cbccc6"
 
+[colors.cursor]
+cursor = "#ffcc66"
+
 [cursor]
-style = "Beam"
+style.shape = "Beam"
 
 [font]
 size = 14

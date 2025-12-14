@@ -24,6 +24,7 @@ import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.Spacing
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.Reflect
+import XMonad.Layout.Renamed
 
 import qualified XMonad.StackSet as W
 
@@ -53,7 +54,7 @@ def' = def
     }
 
 terminal' :: String
-terminal' = "kitty"
+terminal' = "alacritty"
 
 normalBorderColor' :: String
 normalBorderColor' = "#274675"
@@ -97,12 +98,19 @@ layout' = mkToggle (single REFLECTX) $ layouts
     where
         spacing' = spacingRaw False (Border 8 0 8 0) True (Border 0 8 0 8) True
 
-        layouts =   (spacing' tiled)
-                ||| (spacing' emptyBSP)
+        layouts =   tall
+                ||| bsp
                 ||| full
 
-        tiled = Tall 1 (3/100) (1/2)
-        full = Full
+        tall = icon "tall" $ spacing' $ Tall 1 (3/100) (1/2)
+        bsp = icon "bsp" $ spacing' emptyBSP
+        full = icon "full" $ spacing' Full
+
+        icon name = renamed [Replace $ "<icon=layout-" ++ name ++ ".xpm/>"]
+
+
+
+---------------------------- Keybindings ----------------------------
 
 
 
@@ -204,7 +212,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 
 
----------------------------- xmobar ----------------------------
+---------------------------- Xmobar ----------------------------
 
 
 
@@ -217,30 +225,35 @@ xmobarToggle XConfig { modMask = m } = (m, xK_v)
 
 xmobarPP' :: PP
 xmobarPP' = def
-    { ppSep             = magenta " • "
+    { ppSep             = "<hspace=5/>" -- magenta " • "
     , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2
-    , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
+    , ppCurrent         = wrap " " " " . xmobarBorder "Bottom" "#6dcbfa" 3 . white
+    , ppVisible         = wrap " " " " . xmobarBorder "Bottom" "#215975" 3 . white
+    , ppHidden          = white . wrap " " " "
+    , ppHiddenNoWindows = gray . wrap " " " "
     , ppUrgent          = red . wrap (yellow "!") (yellow "!")
-    , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
-    , ppExtras          = [logTitles formatFocused formatUnfocused]
+    , ppOrder           = \[ws, l, _, hs, wins] -> [hs, l, ws, wins]
+    , ppExtras          = [ logConst "<hspace=5/><fn=2><fc=#ae9dd1>\xe777</fc></fn><hspace=5/>"
+                          , logTitles formatFocused formatUnfocused
+                          ]
     }
   where
-    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
-    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+      -- formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
+      -- formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+      formatFocused   = wrap "<hspace=5/>" "<hspace=5/>" . xmobarBorder "Bottom" "#6dcbfa" 3 . lowWhite . ppWindow
+      formatUnfocused = wrap "<hspace=5/>" "<hspace=5/>" . lowWhite    . ppWindow
 
-    -- | Windows should have *some* title, which should not not exceed a
-    -- sane length.
-    ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+      -- | Windows should have *some* title, which should not not exceed a sane length.
+      ppWindow :: String -> String
+      ppWindow = xmobarRaw . (\w -> if null w then "Untitled" else w) . shorten 30
 
-    blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta  = xmobarColor "#ae9dd1" "" -- fg bg
-    blue     = xmobarColor "#6dcbfa" ""
-    white    = xmobarColor "#f8f8f2" ""
-    yellow   = xmobarColor "#23fe6e" ""
-    red      = xmobarColor "#f76868" ""
-    lowWhite = xmobarColor "#d9d7ce" ""
+      blue, lowWhite, magenta, red, white, yellow :: String -> String
+      magenta      = xmobarColor "#ae9dd1" "" -- fg bg
+      blue         = xmobarColor "#6dcbfa" ""
+      white        = xmobarColor "#f8f8f2" ""
+      yellow       = xmobarColor "#23fe6e" ""
+      red          = xmobarColor "#f76868" ""
+      lowWhite     = xmobarColor "#d9d7ce" ""
+      gray         = xmobarColor "#89878e" ""
 
 

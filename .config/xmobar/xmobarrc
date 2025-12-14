@@ -1,35 +1,48 @@
--- 
--- colors = [["#282c34", "#282c34"],  # Dark Gray
---           ["#1c1f24", "#1c1f24"],  # Darker Gray
---           ["#dfdfdf", "#dfdfdf"],  # Very Light Gray
---           ["#f5e0dc", "#f5e0dc"],  # Light Red
---           ["#81c19b", "#81c19b"],  # Light Green
---           ["#df5b61", "#df5b61"],  # Red
---           ["#6791c9", "#6791c9"],  # Light Blue
---           ["#f5c2e7", "#f5c2e7"],  # Light Pink/Purple
---           ["#89dceb", "#89dceb"],  # Teal
---           ["#a9a1e1", "#a9a1e1"]]  # Lavender/Purple
+-- Colors
+--
+-- #282c34  -- Dark Gray
+-- #1c1f24  -- Darker Gray
+-- #dfdfdf  -- Very Light Gray
+-- #f5e0dc  -- Light Red
+-- #81c19b  -- Light Green
+-- #df5b61  -- Red
+-- #6791c9  -- Light Blue
+-- #f5c2e7  -- Light Pink/Purple
+-- #89dceb  -- Teal
+-- #a9a1e1  -- Lavender/Purple
+-- #f7b374  -- Peach/Light Orange
+--
+
 
 Config { overrideRedirect = False
-       , font     = "Roboto 12"
-       , additionalFonts = ["FiraCode Nerd Font Mono"],
+       , iconRoot = "/home/fpeterek/.config/xmobar/icons"
+       , persistent = True
+       , font     = "Roboto Medium 12"
+       , additionalFonts = ["FiraCode Nerd Font Mono Light 18", "FiraCode Nerd Font Mono Light 26"],
        , bgColor  = "#27272d"
        , fgColor  = "#d9d7ce"
-       , position = Bottom
-       , textOffset = -1
-       , iconOffset = -1
+       , position = BottomH 23
+       , border = TopB
+       , borderWidth = 2
+       , borderColor = "#454552"
        , commands = [ Run Cpu
-                        [ "-L", "3"
-                        , "-H", "50"
-                        , "--high"  , "#ed4e4e"
-                        , "--normal", "#22df61"
+                        [ "-t", "<box type=Bottom width=2 color=#a9a1e1><fc=#a9a1e1><hspace=5/><fn=1>\xf4bc</fn><hspace=5/><total>%<hspace=5/></fc></box>"
                         ] 10
-                    , Run Kbd []
-                    , Run Memory [ "-t", "<box type=Bottom width=2 color=#f5c2e7><fc=#f5c2e7> <used> GB </fc></box>", "-d", "1", "--", "--scale", "1024" ] 10
-                    , Run Date "<box type=Bottom width=2 color=#89dceb><fc=#89dceb>%a %d.%m.%Y </fc></box><box type=Bottom width=2 color=#f5e0dc><fc=#f5e0dc> %H:%M</fc></box>" "date" 10
+                    , Run Kbd
+                        [ ("us", "<box type=Bottom width=2 color=#f5e0dc><fc=#f5e0dc><hspace=5/><fn=1>\xf11c</fn><hspace=5/>us<hspace=5/></fc></box>")
+                        , ("cz", "<box type=Bottom width=2 color=#f5e0dc><fc=#f5e0dc><hspace=5/><fn=1>\xf11c</fn><hspace=5/>cz<hspace=5/></fc></box>")
+                        ]
+                    , Run Memory
+                        [ "-t", "<box type=Bottom width=2 color=#f5c2e7><fc=#f5c2e7><hspace=5/><fn=1>\xefc5</fn><hspace=5/><used> GB<hspace=5/></fc></box>"
+                        , "-d", "1"
+                        , "--"
+                        , "--scale", "1024"
+                        ] 10
+                    , Run Date "<box type=Bottom width=2 color=#89dceb><fc=#89dceb><hspace=5/><fn=1>\xf00ed</fn><hspace=5/>%a %d.%m.%Y<hspace=5/></fc></box>" "date" 10
+                    , Run Date "<box type=Bottom width=2 color=#81c19b><fc=#81c19b><hspace=5/><fn=1>\xf017</fn><hspace=5/>%H:%M<hspace=5/></fc></box>" "time" 10
                     , Run XMonadLog
                     , Run Battery
-                        [  "-t", "<box type=Bottom width=2 color=#a9a1e1><fc=#a9a1e1> <left>%  </fc><acstatus> </box>",
+                        [  "-t", "<box type=Bottom width=2 color=#a9a1e1><fc=#a9a1e1><hspace=5/><left>%<hspace=5/></fc><acstatus><hspace=5/></box>",
                            "-f", "\xf244\xf243\xf243\xf243\xf242\xf242\xf242\xf241\xf241\xf240",
                            "-W", "0",
                            "--",
@@ -41,8 +54,14 @@ Config { overrideRedirect = False
                            "-L", "20",
                            "-l", "#df5b61"
                         ] 10
+                    , Run Alsa "default" "Master"
+                        [ "-t", "<box type=Bottom width=2 color=#f7b374><fc=#f7b374><hspace=5/><fn=1>\xf027</fn><hspace=5/><volume>%<hspace=5/></fc></box>"
+                        , "--"
+                        , "--alsactl=/usr/bin/alsactl"
+                        ]
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %kbd% | %alsa:default:Master% | %cpu%%memory%%battery%%date% "
+       -- , template = "%XMonadLog% }{ %kbd%%alsa:default:Master%%cpu%%memory%%battery%%date%%time%"
+       , template = "%XMonadLog% }{ %kbd%%alsa:default:Master%%cpu%%memory%%date%%time%"
        }
