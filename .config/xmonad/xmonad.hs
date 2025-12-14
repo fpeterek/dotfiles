@@ -102,7 +102,7 @@ layout' = mkToggle (single REFLECTX) $ layouts
                 ||| bsp
                 ||| full
 
-        tall = icon "tall" $ spacing' $ Tall 1 (3/100) (1/2)
+        tall = icon "monadtall" $ spacing' $ Tall 1 (3/100) (1/2)
         bsp = icon "bsp" $ spacing' emptyBSP
         full = icon "full" $ spacing' Full
 
@@ -157,11 +157,11 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. controlMask, xK_h), windowSwap L False)
     , ((modMask .|. controlMask, xK_j), windowSwap D False)
 
-    -- Move Window
-    -- , ((modMask .|. controlMask, xK_l), sendMessage MoveRight)
-    -- , ((modMask .|. controlMask, xK_k), sendMessage MoveUp)
-    -- , ((modMask .|. controlMask, xK_h), sendMessage MoveLeft)
-    -- , ((modMask .|. controlMask, xK_j), sendMessage MoveDown)
+    -- Move Window - needs columns
+    -- , ((modMask .|. mod1Mask, xK_l), sendMessage MoveRight)
+    -- , ((modMask .|. mod1Mask, xK_k), sendMessage MoveUp)
+    -- , ((modMask .|. mod1Mask, xK_h), sendMessage MoveLeft)
+    -- , ((modMask .|. mod1Mask, xK_j), sendMessage MoveDown)
 
     -- Resize Window
     , ((modMask .|. shiftMask, xK_l), sendMessage $ ExpandTowards R)
