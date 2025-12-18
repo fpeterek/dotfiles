@@ -225,15 +225,17 @@ xmobarToggle XConfig { modMask = m } = (m, xK_v)
 
 xmobarPP' :: PP
 xmobarPP' = def
-    { ppSep             = "<hspace=5/>" -- magenta " • "
-    , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap " " " " . xmobarBorder "Bottom" "#6dcbfa" 3 . white
-    , ppVisible         = wrap " " " " . xmobarBorder "Bottom" "#215975" 3 . white
-    , ppHidden          = white . wrap " " " "
-    , ppHiddenNoWindows = gray . wrap " " " "
-    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
-    , ppOrder           = \[ws, l, _, hs, wins] -> [hs, l, ws, wins]
-    , ppExtras          = [ logConst "<hspace=5/><fn=2><fc=#ae9dd1>\xe777</fc></fn><hspace=5/>"
+    { ppSep              = "<hspace=5/>"
+    , ppTitleSanitize    = xmobarStrip
+    , ppCurrent          = pad . xmobarBorder "Bottom" "#6dcbfa" 3 . white
+    , ppCurrentNoWindows = Just $ pad . xmobarBorder "Bottom" "#6dcbfa" 3 . gray
+    , ppVisible          = pad . xmobarBorder "Bottom" "#215975" 3 . white
+    , ppVisibleNoWindows = Just $ pad . xmobarBorder "Bottom" "#215975" 3 . gray
+    , ppHidden           = white . pad
+    , ppHiddenNoWindows  = gray . pad
+    , ppUrgent           = red . pad
+    , ppOrder            = \[ws, l, _, hs, wins] -> [hs, l, ws, wins]
+    , ppExtras           = [ logConst "<hspace=5/><fn=2><fc=#ae9dd1>\xe777</fc></fn><hspace=5/>"
                           , logTitles formatFocused formatUnfocused
                           ]
     }
@@ -250,7 +252,7 @@ xmobarPP' = def
       blue, lowWhite, magenta, red, white, yellow :: String -> String
       magenta      = xmobarColor "#ae9dd1" "" -- fg bg
       blue         = xmobarColor "#6dcbfa" ""
-      white        = xmobarColor "#f8f8f2" ""
+      white        = xmobarColor "#e0e0e0" ""
       yellow       = xmobarColor "#23fe6e" ""
       red          = xmobarColor "#f76868" ""
       lowWhite     = xmobarColor "#d9d7ce" ""
