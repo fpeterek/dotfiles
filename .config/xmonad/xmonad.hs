@@ -72,6 +72,8 @@ startupHook' = do
     spawnOnce "find ~/Wallpapers -type f | shuf -n 1 | xargs feh --bg-fill --no-fehbg"
     spawnOnce "DISPLAY=':0' picom -b --xrender-sync --xrender-sync-fence"
     spawnOnce "reorder-screens"
+    spawnOnce ("trayer --edge bottom --align right --SetDockType true --SetPartialStrut true " ++
+              "--expand true --width 10 --transparent true --tint 0x5f5f5f --height 18")
 
 
 manageHook' :: ManageHook

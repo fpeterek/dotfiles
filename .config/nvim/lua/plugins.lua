@@ -49,7 +49,9 @@ local plugins = {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = ts_config
+        config = ts_config,
+        branch = "main",
+        lazy = false,
     },
 
     {

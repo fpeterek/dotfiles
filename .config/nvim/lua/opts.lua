@@ -49,12 +49,14 @@ vim.g.python_indent = {
 vim.cmd("au VimLeave * set guicursor=a:ver25")
 
 ts_config = function()
-    require('nvim-treesitter.configs').setup {
-        -- A list of parser names, or "all"
-        ensure_installed = {
-            "c", "cpp", "rust", "java", "kotlin", "scala", "python", "lua", "vim", "bash",
-            "regex", "markdown", "markdown_inline", "haskell",
-        },
+    ts = require('nvim-treesitter')
+
+    ts.install {
+        "c", "cpp", "rust", "java", "kotlin", "scala", "python", "lua", "vim", "bash",
+        "regex", "markdown", "markdown_inline", "haskell",
+    }
+
+    ts.setup {
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
