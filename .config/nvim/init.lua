@@ -11,18 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- TODO: Check if there's a better way to do this
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { '*' },
-  callback = function()
-      if vim.treesitter.get_parser(bufnr) then
-          vim.treesitter.start()
-      end
-  end,
-})
 
 require("keybindings")
 require("opts")
+require("plugin-confs")
 require("plugins")
 require("colors")
 require("lsps")
