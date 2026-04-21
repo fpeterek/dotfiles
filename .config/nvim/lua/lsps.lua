@@ -116,3 +116,9 @@ vim.lsp.config('hls', {
 })
 
 vim.lsp.enable('hls')
+
+vim.lsp.config('sourcekit', {
+    on_attach = lsp_on_attach,
+})
+
+vim.lsp.enable('sourcekit')

@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd('FileType', {
             -- vim.wo[0][0].foldmethod = 'expr'
 
             -- Indentation - experimental
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
             vim.treesitter.start()
         end

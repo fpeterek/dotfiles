@@ -7,7 +7,7 @@ ts_config = function()
         "c", "cpp", "rust", "zig",
         "cmake", "printf",
 
-        "java", "kotlin", "scala", "clojure",
+        "java", "kotlin", "scala", "clojure", "swift",
 
         "python", "lua",
 
@@ -44,7 +44,10 @@ cmp_nvim_lsp_config = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-    local servers = { 'clangd', 'rust_analyzer', 'pylsp', 'kotlin_language_server', 'hls' }
+    local servers = {
+        'clangd', 'rust_analyzer', 'pylsp', 'kotlin_language_server',
+        'hls', 'sourcekit'
+    }
 
     for _, lsp in ipairs(servers) do
       vim.lsp.config(lsp, {
