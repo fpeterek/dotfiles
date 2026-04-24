@@ -64,6 +64,7 @@ vim.api.nvim_set_keymap('n', '<leader>fc', '<cmd>Telescope current_buffer_fuzzy_
 vim.api.nvim_set_keymap('n', '<leader>fr', '<cmd>Telescope registers<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>Telescope spell_suggest<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<leader>ft', '<cmd>TodoTelescope theme=ivy<cr>', { noremap=true })
 
 vim.api.nvim_set_keymap('n', "<leader>nt", "<cmd>Neotree toggle<cr>", { noremap=true })
 
