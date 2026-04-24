@@ -262,3 +262,47 @@ end
 colorizer_config = function()
     require('colorizer').setup()
 end
+
+telescope_config = function()
+    local telescope = require('telescope')
+
+    telescope.setup({
+        defaults = {
+        },
+        pickers = {
+            lsp_definitions = {
+                theme = "cursor",
+            },
+            lsp_implementation = {
+                theme = "cursor",
+            },
+            lsp_type_definitions = {
+                theme = "cursor",
+            },
+            lsp_references = {
+                theme = "ivy",
+            },
+            lsp_incoming_calls = {
+                theme = "cursor",
+            },
+            lsp_outgoing_calls = {
+                theme = "cursor",
+            },
+
+            current_buffer_fuzzy_find = {
+                theme = "ivy",
+            },
+            spell_suggest = {
+                theme = "ivy",
+            },
+        },
+        extensions = {
+            ["ui-select"] = {
+                require("telescope.themes").get_cursor { }
+            }
+        }
+    })
+
+    telescope.load_extension('fzf')
+    telescope.load_extension('ui-select')
+end

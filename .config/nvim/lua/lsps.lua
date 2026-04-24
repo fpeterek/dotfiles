@@ -119,6 +119,7 @@ vim.lsp.enable('hls')
 
 vim.lsp.config('sourcekit', {
     on_attach = lsp_on_attach,
+    filetypes = { 'swift', 'objc', 'objcpp' },
 })
 
 vim.lsp.enable('sourcekit')

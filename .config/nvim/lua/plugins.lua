@@ -60,7 +60,22 @@ local plugins = {
     },
 
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
+
+    {
+        "nvim-telescope/telescope.nvim",
+        version = "*",
+
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make"
+            },
+            "nvim-telescope/telescope-ui-select.nvim"
+        },
+        config = telescope_config,
+    },
+
     {
         "nvim-lualine/lualine.nvim",
         config = lualine_config

@@ -26,16 +26,31 @@ vim.api.nvim_set_keymap('i', '<C-Space>', '<C-x><C-n>', { noremap=true })
 -- Whilst, technically, lsp_on_attach is a variable, I choose to define it here
 -- as the variable is used to define keybindings
 lsp_buf_keybindings = function(bufnr)
+    -- [g]oto
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', lsp_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', lsp_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', lsp_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>hs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', lsp_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', lsp_opts)
+
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', lsp_opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', lsp_opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', lsp_opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', lsp_opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gd', '<cmd>Telescope lsp_definitions<CR>', lsp_opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gi', '<cmd>Telescope lsp_implementation<CR>', lsp_opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gt', '<cmd>Telescope lsp_type_definitions<CR>', lsp_opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gr', '<cmd>Telescope lsp_references<CR>', lsp_opts)
+
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gc', '<cmd>Telescope lsp_incoming_calls<CR>', lsp_opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gC', '<cmd>Telescope lsp_outgoing_calls<CR>', lsp_opts)
+
+    -- [r]ename
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', lsp_opts)
+
+    -- [c]ode
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', lsp_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', lsp_opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', '<cmd>lua vim.lsp.buf.format()<CR>', lsp_opts)
+
+    -- [s]how
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sh', '<cmd>lua vim.lsp.buf.hover()<CR>', lsp_opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ss', '<cmd>lua vim.lsp.buf.signature_help()<CR>', lsp_opts)
 end
 
 
@@ -46,6 +61,9 @@ vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope git_files<cr>', { nor
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fc', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<leader>fr', '<cmd>Telescope registers<cr>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>Telescope spell_suggest<cr>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', { noremap=true })
 
 vim.api.nvim_set_keymap('n', "<leader>nt", "<cmd>Neotree toggle<cr>", { noremap=true })
 
