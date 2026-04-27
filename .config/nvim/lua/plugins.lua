@@ -1,38 +1,36 @@
 local plugins = {
 
-    "navarasu/onedark.nvim",
-
-    {
-        "Yazeed1s/oh-lucy.nvim",
-        config = function() 
-            vim.g.oh_lucy_italic_keywords = true
-            vim.g.oh_lucy_italic_variables = true
-            vim.g.oh_lucy_evening_italic_keywords = true
-            vim.g.oh_lucy_evening_italic_variables = true
-        end
-    },
+    -- {
+    --     "navarasu/onedark.nvim",
+    --     config = onedark_colorscheme
+    -- },
 
     "akinsho/horizon.nvim",
 
     {
         "NTBBloodbath/doom-one.nvim",
-        config = function() 
-            vim.g.doom_one_cursor_coloring = true
-            vim.g.doom_one_italic_comments = true
-            vim.g.doom_one_plugin_telescope = true
-        end
+        config = doomone_colorscheme
     },
 
     {
         "rose-pine/neovim",
-        config = function() 
-            require("rose-pine").setup({
-                styles = {
-                    italic = false,
-                    bold = false,
-                }
-            })
-        end
+        config = rosepine_colorscheme
+    },
+
+    {
+        "serhez/teide.nvim",
+        config = pica_del_teide_colorscheme
+    },
+
+    {
+        'sainnhe/edge',
+        config = edge_colorscheme
+    },
+
+    {
+        'olimorris/onedarkpro.nvim',
+        priority = 1000,
+        config = onedarkpro_colorscheme
     },
 
     {
@@ -105,10 +103,13 @@ local plugins = {
     "hrsh7th/cmp-cmdline",
 
     {
+        "xzbdmw/colorful-menu.nvim"
+    },
+
+    {
         "hrsh7th/nvim-cmp",
         config = nvim_cmp_config
     },
-
     {
         "scalameta/nvim-metals",
         config = metals_config
@@ -145,9 +146,20 @@ local plugins = {
         config = noice_config,
     },
 
+    -- {
+    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    --     config = lsp_lines_config,
+    -- },
+
     {
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        config = lsp_lines_config,
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "VeryLazy",
+        priority = 1000,
+        config = tiny_inline_diagnostic_config
+    },
+
+    {
+        "https://git.sr.ht/~chinmay/clangd_extensions.nvim",
     },
 
     {

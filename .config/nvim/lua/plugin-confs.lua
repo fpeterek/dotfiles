@@ -36,6 +36,15 @@ neotree_config = function()
         never_show = {
             '.git',
             'venv',
+        },
+        source_selector = {
+            winbar = true,
+        },
+        sources = {
+            "filesystem",
+            "buffers",
+            "git_status",
+            "document_symbols"
         }
     })
 end
@@ -60,19 +69,46 @@ nvim_cmp_config = function()
     local cmp = require('cmp')
 
     cmp.setup {
+        formatting = {
+            format = function(entry, vim_item)
+                local highlights_info = require("colorful-menu").cmp_highlights(entry)
 
-      mapping = cmp.mapping.preset.insert({
-        -- ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
+                -- highlight_info is nil means we are missing the ts parser, it's
+                -- better to fallback to use default `vim_item.abbr`. What this plugin
+                -- offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
+                if highlights_info ~= nil then
+                    vim_item.abbr_hl_group = highlights_info.highlights
+                    vim_item.abbr = highlights_info.text
+                end
+
+                return vim_item
+            end,
         },
-      }),
-      sources = {
-        { name = 'nvim_lsp' },
-        -- { name = 'buffer' },
-        -- { name = 'path' },
-      },
+        sorting = {
+            comparators = {
+                cmp.config.compare.offset,
+                cmp.config.compare.exact,
+                cmp.config.compare.recently_used,
+                require("clangd_extensions.cmp_scores"),
+                cmp.config.compare.kind,
+                cmp.config.compare.sort_text,
+                cmp.config.compare.length,
+                cmp.config.compare.order,
+            },
+        },
+
+        mapping = cmp.mapping.preset.insert({
+            -- ['<C-Space>'] = cmp.mapping.complete(),
+            ['<CR>'] = cmp.mapping.confirm {
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+            },
+        }),
+        sources = {
+            { name = 'nvim_lsp' },
+            -- { name = 'buffer' },
+            -- { name = 'path' },
+        },
     }
 end
 
@@ -191,7 +227,7 @@ noice_config = function()
         },
 
         messages = {
-            enabled = true,
+            enabled = false,
             view = "mini",
             view_error = "mini",
             view_warn = "mini",
@@ -256,6 +292,25 @@ lsp_lines_config = function()
         },
     })
     require('lsp_lines').setup({
+    })
+end
+
+tiny_inline_diagnostic_config = function()
+    vim.diagnostic.config({ 
+        virtual_text = false,
+    })
+    require('tiny-inline-diagnostic').setup({
+        signs = {
+            diag = 'ඞ',
+        },
+        options = {
+            add_messages = {
+                display_count = true,
+            },
+            multilines = {
+                enabled = true,
+            },
+        },
     })
 end
 

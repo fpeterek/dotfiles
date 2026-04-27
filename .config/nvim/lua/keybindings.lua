@@ -41,6 +41,8 @@ lsp_buf_keybindings = function(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gc', '<cmd>Telescope lsp_incoming_calls<CR>', lsp_opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gC', '<cmd>Telescope lsp_outgoing_calls<CR>', lsp_opts)
 
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gh', '<cmd>ClangdSwitchSourceHeader<CR>', lsp_opts)
+
     -- [r]ename
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', lsp_opts)
 
@@ -49,8 +51,10 @@ lsp_buf_keybindings = function(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', '<cmd>lua vim.lsp.buf.format()<CR>', lsp_opts)
 
     -- [s]how
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sh', '<cmd>lua vim.lsp.buf.hover()<CR>', lsp_opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ss', '<cmd>lua vim.lsp.buf.signature_help()<CR>', lsp_opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sh', '<cmd>lua vim.lsp.buf.hover()<CR>', lsp_opts)
+
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>si', '<cmd>ClangdSymbolInfo<CR>', lsp_opts)
 end
 
 
@@ -67,4 +71,8 @@ vim.api.nvim_set_keymap('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', { n
 vim.api.nvim_set_keymap('n', '<leader>ft', '<cmd>TodoTelescope theme=ivy<cr>', { noremap=true })
 
 vim.api.nvim_set_keymap('n', "<leader>nt", "<cmd>Neotree toggle<cr>", { noremap=true })
+vim.api.nvim_set_keymap('n', "<leader>nf", "<cmd>Neotree filesystem<cr>", { noremap=true })
+vim.api.nvim_set_keymap('n', "<leader>nb", "<cmd>Neotree buffers<cr>", { noremap=true })
+vim.api.nvim_set_keymap('n', "<leader>ng", "<cmd>Neotree git_status<cr>", { noremap=true })
+vim.api.nvim_set_keymap('n', "<leader>ns", "<cmd>Neotree document_symbols<cr>", { noremap=true })
 
