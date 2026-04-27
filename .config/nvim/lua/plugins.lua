@@ -30,7 +30,6 @@ local plugins = {
     {
         'olimorris/onedarkpro.nvim',
         priority = 1000,
-        config = onedarkpro_colorscheme
     },
 
     {

@@ -55,5 +55,6 @@ end
 
 
 -- Apparently if I don't do this, the cursorline doesn't draw properly
+onedarkpro_colorscheme()
 vim.cmd.colorscheme("onedark")
 vim.cmd.colorscheme("onedark_vivid")
