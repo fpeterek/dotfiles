@@ -7,6 +7,8 @@ local plugins = {
 
     "akinsho/horizon.nvim",
 
+    "Shatur/neovim-ayu",
+
     {
         "NTBBloodbath/doom-one.nvim",
         config = doomone_colorscheme
@@ -35,10 +37,6 @@ local plugins = {
     {
         "norcalli/nvim-colorizer.lua",
         config = colorizer_config
-    },
-
-    {
-        "preservim/tagbar",
     },
 
     "farmergreg/vim-lastplace",
@@ -170,4 +168,5 @@ local plugins = {
     "nvim-tree/nvim-web-devicons",
 }
 
+-- require('vim._core.ui2').enable()
 require("lazy").setup(plugins)

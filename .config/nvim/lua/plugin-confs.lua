@@ -31,14 +31,39 @@ neotree_config = function()
     require('neo-tree').setup({
         close_if_last_window = true,
         filesystem = {
-            hide_dotfiles = false,
-        },
-        never_show = {
-            '.git',
-            'venv',
+            filtered_items = {
+                hide_dotfiles = false,
+                hide_gitignored = true,
+                hide_by_name = {
+                    '.git',
+                    'venv',
+                    '.venv',
+                },
+                always_show = {
+                    '.gitignore'
+                },
+            },
         },
         source_selector = {
             winbar = true,
+            sources = {
+                {
+                    source = "filesystem",
+                    display_name = " 󰉓 "
+                },
+                {
+                    source = "buffers",
+                    display_name = " 󰈚 "
+                },
+                {
+                    source = "git_status",
+                    display_name = " 󰊢 "
+                },
+                {
+                    source = "document_symbols",
+                    display_name = " 󰌗 "
+                },
+            },
         },
         sources = {
             "filesystem",
@@ -227,7 +252,7 @@ noice_config = function()
         },
 
         messages = {
-            enabled = false,
+            enabled = true,
             view = "mini",
             view_error = "mini",
             view_warn = "mini",
@@ -264,6 +289,11 @@ noice_config = function()
                         FloatBorder = "DiagnosticInfo"
                     },
                 },
+            },
+        },
+        lsp = {
+            hover = {
+                silent = true,
             },
         },
     })

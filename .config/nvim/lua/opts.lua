@@ -53,13 +53,8 @@ vim.api.nvim_create_autocmd('FileType', {
         -- But if there is a parser for the current filetype, we start Treesitter
         -- This is easier than writing the filetypes explicitely
         if vim.treesitter.get_parser(bufnr) then
-            -- Folding - if I ever want it
-            -- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-            -- vim.wo[0][0].foldmethod = 'expr'
-
             -- Indentation - experimental
             -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-
             vim.treesitter.start()
         end
     end,
