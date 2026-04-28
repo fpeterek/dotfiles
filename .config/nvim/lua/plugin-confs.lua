@@ -270,6 +270,7 @@ noice_config = function()
             --     },
             -- },
             popupmenu = {
+                enabled = true,
                 relative = "editor",
                 position = {
                     row = "55%",

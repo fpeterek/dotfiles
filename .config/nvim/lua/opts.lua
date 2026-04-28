@@ -1,47 +1,64 @@
-vim.opt.compatible = false
-vim.opt.backspace = "indent,eol,start"
-vim.opt.tabstop = 4
+vim.opt.tabstop     = 4
 vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.autoindent = true
+vim.opt.shiftwidth  = 4
+vim.opt.expandtab   = true
 vim.opt.smartindent = true
-vim.opt.cindent = true
-vim.opt.number = true
+vim.opt.cindent     = true
+vim.opt.shiftround  = true
+
+vim.opt.number         = true
 vim.opt.relativenumber = true
-vim.opt.wildmenu = true
-vim.opt.ruler = true
+
 vim.opt.showmode = false
-vim.opt.showcmd = true
-vim.opt.scrolloff = 4
-vim.opt.smartcase = true
-vim.opt.showbreak = "↪"
-vim.opt.title = true
-vim.opt.titlestring = "nvim - %t"
-vim.opt.errorbells = false
-vim.opt.mouse = "a"
-vim.opt.encoding = "UTF-8"
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-vim.opt.cursorline = true
-vim.opt.foldcolumn = "1"
-vim.opt.linebreak = false
-vim.opt.termguicolors = true
-vim.opt.clipboard = "unnamedplus"
+
+vim.opt.wildmenu = true
+
+vim.opt.scrolloff     = 4
+vim.opt.sidescrolloff = 12
+vim.opt.smoothscroll  = true
+
+vim.opt.smartcase  = true
+vim.opt.hlsearch   = false
+vim.opt.inccommand = "split"
+
+vim.opt.breakat     = " ^I!@*-+;:,./?(){}[]<>="
+vim.opt.showbreak   = "↪"
 vim.opt.breakindent = true
-vim.opt.showmatch = false
-vim.opt.signcolumn = "yes:3"
-vim.opt.background = "dark"
+vim.opt.linebreak   = true
+vim.opt.wrap        = false
+
+vim.opt.title       = true
+vim.opt.titlestring = "nvim - %t"
+
+vim.opt.mouse = "a"
+
+vim.opt.cursorline  = true
 vim.opt.colorcolumn = '100'
-vim.opt.wrap = false
+
+vim.opt.foldcolumn  = "1"
+vim.opt.signcolumn  = "yes:3"
+
+vim.opt.clipboard     = "unnamedplus"
+vim.opt.termguicolors = true
+vim.opt.background    = "dark"
+
+vim.opt.list      = true
+vim.opt.listchars = {
+    tab = '» ',
+    trail = '·',
+    nbsp = '␣',
+    extends = '…',
+}
 
 vim.opt.completeopt = "fuzzy,menuone,noselect,popup"
 
-vim.opt.pumheight = 7
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 
 vim.g.python_indent = {
     open_paren = 'shiftwidth()',
-    continue = 'shiftwidth() * 2',
+    continue = 'shiftwidth()',
     closed_paren_align_last_line = false,
 }
 
