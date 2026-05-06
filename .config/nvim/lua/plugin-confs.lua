@@ -149,18 +149,6 @@ lualine_config = function()
 end
 
 
-ibl_config = function()
-    require('ibl').setup({
-        indent = {
-            char = '▏'
-        },
-        scope = {
-            enabled = false
-        }
-    })
-end
-
-
 todo_config = function()
     require('todo-comments').setup()
 end
@@ -446,3 +434,20 @@ blink_config = function()
     }) -- setup
 end
 
+
+blink_indent_config = function()
+
+    local function set_highlights()
+        vim.api.nvim_set_hl(0, 'BlinkIndent',      { default = false, force = true, fg='#323542' })
+        vim.api.nvim_set_hl(0, 'BlinkIndentScope', { default = false, force = true, fg='#414454' })
+    end
+
+    set_highlights()
+    vim.api.nvim_create_autocmd('ColorScheme', { group = augroup, callback = set_highlights })
+
+    require('blink.indent').setup({
+        scope = {
+            highlights = { 'BlinkIndentScope' }
+        }
+    })
+end

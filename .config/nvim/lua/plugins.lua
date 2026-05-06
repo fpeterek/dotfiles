@@ -5,9 +5,13 @@ local plugins = {
     --     config = onedark_colorscheme
     -- },
 
-    "akinsho/horizon.nvim",
+    {
+        "akinsho/horizon.nvim",
+    },
 
-    "Shatur/neovim-ayu",
+    {
+        "Shatur/neovim-ayu",
+    },
 
     {
         "NTBBloodbath/doom-one.nvim",
@@ -36,10 +40,12 @@ local plugins = {
 
     {
         "norcalli/nvim-colorizer.lua",
-        config = colorizer_config
+        config = colorizer_config,
     },
 
-    "farmergreg/vim-lastplace",
+    {
+        "farmergreg/vim-lastplace",
+    },
 
     {
         "nvim-treesitter/nvim-treesitter",
@@ -50,15 +56,8 @@ local plugins = {
     },
 
     {
-        "saghen/blink.pairs",
-        version = "*",
-        dependencies = {
-            "saghen/blink.download",
-        },
-        config = blink_pairs_config,
+        "nvim-lua/plenary.nvim",
     },
-
-    "nvim-lua/plenary.nvim",
 
     {
         "nvim-telescope/telescope.nvim",
@@ -77,9 +76,12 @@ local plugins = {
 
     {
         "nvim-lualine/lualine.nvim",
-        config = lualine_config
+        config = lualine_config,
     },
-    "MunifTanjim/nui.nvim",
+
+    {
+        "MunifTanjim/nui.nvim",
+    },
 
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -92,7 +94,24 @@ local plugins = {
         lazy = false,
     },
 
-    "neovim/nvim-lspconfig",
+    {
+        "neovim/nvim-lspconfig",
+    },
+
+    {
+        "saghen/blink.indent",
+        config = blink_indent_config,
+    },
+
+    {
+        "saghen/blink.pairs",
+        version = "*",
+        dependencies = {
+            "saghen/blink.download",
+        },
+        config = blink_pairs_config,
+    },
+
 
     {
         "saghen/blink.cmp",
@@ -106,18 +125,12 @@ local plugins = {
 
     {
         "scalameta/nvim-metals",
-        config = metals_config
+        config = metals_config,
     },
 
     {
         "lewis6991/gitsigns.nvim",
         config = gitsigns_config,
-    },
-
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        config = ibl_config
     },
 
     {
@@ -140,16 +153,11 @@ local plugins = {
         config = noice_config,
     },
 
-    -- {
-    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    --     config = lsp_lines_config,
-    -- },
-
     {
         "rachartier/tiny-inline-diagnostic.nvim",
         event = "VeryLazy",
         priority = 1000,
-        config = tiny_inline_diagnostic_config
+        config = tiny_inline_diagnostic_config,
     },
 
     {
@@ -162,7 +170,9 @@ local plugins = {
     },
 
     -- Should be the last plugins to load
-    "nvim-tree/nvim-web-devicons",
+    {
+        "nvim-tree/nvim-web-devicons",
+    },
 }
 
 -- require('vim._core.ui2').enable()
