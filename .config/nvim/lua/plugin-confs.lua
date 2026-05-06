@@ -27,6 +27,7 @@ ts_config = function()
 
 end
 
+
 neotree_config = function()
     require('neo-tree').setup({
         close_if_last_window = true,
@@ -74,68 +75,6 @@ neotree_config = function()
     })
 end
 
-cmp_nvim_lsp_config = function()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-    local servers = {
-        'clangd', 'rust_analyzer', 'pylsp', 'kotlin_language_server',
-        'hls', 'sourcekit'
-    }
-
-    for _, lsp in ipairs(servers) do
-      vim.lsp.config(lsp, {
-        capabilities = capabilities,
-      })
-    end
-end
-
-nvim_cmp_config = function()
-    local cmp = require('cmp')
-
-    cmp.setup {
-        formatting = {
-            format = function(entry, vim_item)
-                local highlights_info = require("colorful-menu").cmp_highlights(entry)
-
-                -- highlight_info is nil means we are missing the ts parser, it's
-                -- better to fallback to use default `vim_item.abbr`. What this plugin
-                -- offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
-                if highlights_info ~= nil then
-                    vim_item.abbr_hl_group = highlights_info.highlights
-                    vim_item.abbr = highlights_info.text
-                end
-
-                return vim_item
-            end,
-        },
-        sorting = {
-            comparators = {
-                cmp.config.compare.offset,
-                cmp.config.compare.exact,
-                cmp.config.compare.recently_used,
-                require("clangd_extensions.cmp_scores"),
-                cmp.config.compare.kind,
-                cmp.config.compare.sort_text,
-                cmp.config.compare.length,
-                cmp.config.compare.order,
-            },
-        },
-
-        mapping = cmp.mapping.preset.insert({
-            -- ['<C-Space>'] = cmp.mapping.complete(),
-            ['<CR>'] = cmp.mapping.confirm {
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            },
-        }),
-        sources = {
-            { name = 'nvim_lsp' },
-            -- { name = 'buffer' },
-            -- { name = 'path' },
-        },
-    }
-end
 
 metals_config = function()
     local metals_conf = require('metals').bare_config()
@@ -145,7 +84,6 @@ metals_config = function()
     }
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
     metals_conf.capabilities = capabilities
 
     metals_conf.on_attach = lsp_on_attach
@@ -164,6 +102,7 @@ metals_config = function()
       group = nvim_metals_group,
     })
 end
+
 
 rainbow_config = function()
     local rainbow_delimiters = require('rainbow-delimiters')
@@ -189,10 +128,12 @@ rainbow_config = function()
     }
 end
 
+
 lualine_config = function()
     conf = require('lualine-conf')
     require('lualine').setup(conf)
 end
+
 
 ibl_config = function()
     require('ibl').setup({
@@ -205,9 +146,11 @@ ibl_config = function()
     })
 end
 
+
 todo_config = function()
     require('todo-comments').setup()
 end
+
 
 notify_config = function()
     require('notify').setup({
@@ -215,6 +158,7 @@ notify_config = function()
     })
     vim.notify = require('notify')
 end
+
 
 noice_config = function()
     require("noice").setup({
@@ -300,9 +244,11 @@ noice_config = function()
     })
 end
 
+
 trouble_config = function()
     require('trouble').setup()
 end
+
 
 surfers_config = function()
     require('nvim-surfers').setup({
@@ -310,9 +256,11 @@ surfers_config = function()
     })
 end
 
+
 gitsigns_config = function()
     require('gitsigns').setup()
 end
+
 
 lsp_lines_config = function()
     vim.diagnostic.config({ 
@@ -325,6 +273,7 @@ lsp_lines_config = function()
     require('lsp_lines').setup({
     })
 end
+
 
 tiny_inline_diagnostic_config = function()
     vim.diagnostic.config({ 
@@ -345,9 +294,11 @@ tiny_inline_diagnostic_config = function()
     })
 end
 
+
 colorizer_config = function()
     require('colorizer').setup()
 end
+
 
 telescope_config = function()
     local telescope = require('telescope')
@@ -392,3 +343,92 @@ telescope_config = function()
     telescope.load_extension('fzf')
     telescope.load_extension('ui-select')
 end
+
+
+blink_config = function()
+    require("blink.cmp").setup({
+        keymap = {
+            preset = 'none',
+
+            ['<CR>'] = { 'accept', 'fallback' },
+
+            ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+            ['<C-s>'] = { 'show_signature', 'hide_signature', 'fallback' },
+
+            ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
+            ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
+
+            ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+            ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+
+        },
+
+        sources = {
+            default = {
+                "lsp", "path", "buffer"
+            },
+            providers = {
+                snippets = {
+                    opts = {
+                        friendly_snippets = false,
+                    },
+                },
+            },
+        },
+
+        signature = { enabled = false, },
+
+        completion = {
+            ghost_text = {
+                enabled = true,
+            },
+
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 50,
+                window = { border = "rounded" }
+            },
+
+            menu = {
+                border = "rounded",
+
+                draw = {
+                    columns = {
+                        { "kind_icon", gap = 2 },
+                        { "label", gap = 3 },
+                        { "kind", gap = 3}
+                    },
+
+                    components = {
+                        label = {
+                            text = function(ctx)
+                                return require("colorful-menu").blink_components_text(ctx)
+                            end,
+                            highlight = function(ctx)
+                                return require("colorful-menu").blink_components_highlight(ctx)
+                            end,
+                        },
+                        kind_icon = {
+                            text = function(ctx)
+                                return " " .. ctx.kind_icon .. " "
+                            end,
+                            highlight = function(ctx)
+                                return "BlinkCmpKindIcon" .. ctx.kind
+                            end,
+                        },
+                        kind = {
+                            text = function(ctx)
+                                return " " .. ctx.kind .. " "
+                            end,
+                        },
+                    }, -- components
+
+                }, -- draw
+
+            }, -- menu
+
+        }, -- completion
+
+    }) -- setup
+end
+

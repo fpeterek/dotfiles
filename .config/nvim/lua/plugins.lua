@@ -91,22 +91,15 @@ local plugins = {
     "neovim/nvim-lspconfig",
 
     {
-        "hrsh7th/cmp-nvim-lsp",
-        config = cmp_nvim_lsp_config
+        "saghen/blink.cmp",
+        version = "*",
+        config = blink_config,
     },
-
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
 
     {
         "xzbdmw/colorful-menu.nvim"
     },
 
-    {
-        "hrsh7th/nvim-cmp",
-        config = nvim_cmp_config
-    },
     {
         "scalameta/nvim-metals",
         config = metals_config

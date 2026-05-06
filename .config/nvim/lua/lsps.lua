@@ -17,7 +17,7 @@ vim.lsp.config('clangd', {
             ParameterNames = true,
             DeducedTypes = true,
         },
-        fallbackFlags = { "-std=c++23", "-Wall", "-Wextra", "-Wconversion" },
+        fallbackFlags = { "-std=c++26", "-Wall", "-Wextra", "-Wconversion" },
     },
 
     on_attach = lsp_on_attach,
