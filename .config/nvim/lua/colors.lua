@@ -45,7 +45,7 @@ end
 onedarkpro_colorscheme = function()
     require("onedarkpro").setup({
         styles = {
-            comments = 'italic'           
+            comments = 'italic'
         },
         options = {
             cursorline = true

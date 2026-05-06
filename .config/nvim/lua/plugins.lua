@@ -50,8 +50,12 @@ local plugins = {
     },
 
     {
-        "HiPhish/rainbow-delimiters.nvim",
-        config = rainbow_config
+        "saghen/blink.pairs",
+        version = "*",
+        dependencies = {
+            "saghen/blink.download",
+        },
+        config = blink_pairs_config,
     },
 
     "nvim-lua/plenary.nvim",

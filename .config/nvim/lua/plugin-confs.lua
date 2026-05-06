@@ -104,28 +104,42 @@ metals_config = function()
 end
 
 
-rainbow_config = function()
-    local rainbow_delimiters = require('rainbow-delimiters')
+blink_pairs_config = function()
 
-    vim.g.rainbow_delimiters = {
-        strategy = {
-            [''] = rainbow_delimiters.strategy['global'],
-            vim = rainbow_delimiters.strategy['local'],
-        },
-        query = {
-            [''] = 'rainbow-delimiters',
-            lua = 'rainbow-blocks',
-        },
-        highlight = {
-            'RainbowDelimiterRed',
-            'RainbowDelimiterYellow',
-            'RainbowDelimiterBlue',
-            'RainbowDelimiterOrange',
-            'RainbowDelimiterGreen',
-            'RainbowDelimiterViolet',
-            'RainbowDelimiterCyan',
-        },
-    }
+    function set_highlights()
+        ns = vim.api.nvim_create_namespace('blink_pairs')
+
+        vim.api.nvim_set_hl_ns(ns)
+
+        vim.api.nvim_set_hl(ns, 'BlinkPairsRed',    { ctermfg = 'Red',     fg = '#e65f55', default = false, force=true })
+        vim.api.nvim_set_hl(ns, 'BlinkPairsYellow', { ctermfg = 'Yellow',  fg = '#ebe771', default = false, force=true })
+        vim.api.nvim_set_hl(ns, 'BlinkPairsBlue',   { ctermfg = 'Blue',    fg = '#6bbae8', default = false, force=true })
+        vim.api.nvim_set_hl(ns, 'BlinkPairsOrange', { ctermfg = 'White',   fg = '#e39910', default = false, force=true })
+        vim.api.nvim_set_hl(ns, 'BlinkPairsGreen',  { ctermfg = 'Green',   fg = '#43b06c', default = false, force=true })
+        vim.api.nvim_set_hl(ns, 'BlinkPairsPurple', { ctermfg = 'Magenta', fg = '#b55eb5', default = false, force=true })
+        vim.api.nvim_set_hl(ns, 'BlinkPairsCyan',   { ctermfg = 'Cyan',    fg = '#4ed9d9', default = false, force=true })
+
+        vim.api.nvim_set_hl(ns, 'BlinkPairsUnmatched', { ctermfg = 9, fg = '#ff007c', default = true })
+        vim.api.nvim_set_hl(ns, 'BlinkPairsMatchParen', { link = 'MatchParen', default = true })
+    end
+
+    set_highlights()
+
+    vim.api.nvim_create_autocmd('ColorScheme', {
+        group = vim.api.nvim_create_augroup('blink_pairs_highlights', {}),
+        callback = set_highlights,
+    })
+
+
+    require('blink.pairs').setup({
+        highlights = {
+            enabled = true,
+            groups = {
+                'BlinkPairsRed', 'BlinkPairsYellow', 'BlinkPairsBlue', 'BlinkPairsOrange',
+                'BlinkPairsGreen', 'BlinkPairsPurple', 'BlinkPairsCyan',
+            },
+        }
+    })
 end
 
 
