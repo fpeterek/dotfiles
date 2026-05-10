@@ -54,14 +54,10 @@ Config { overrideRedirect = False
                            "-L", "20",
                            "-l", "#df5b61"
                         ] 10
-                    , Run Alsa "default" "Master"
-                        [ "-t", "<box type=Bottom width=2 color=#f7b374><fc=#f7b374><hspace=5/><fn=1>\xf027</fn><hspace=5/><volume>%<hspace=5/></fc></box>"
-                        , "--"
-                        , "--alsactl=/usr/bin/alsactl"
-                        ]
+                    , Run Com "/home/fpeterek/.config/xmobar/volume.sh" [] "pamixer" 100
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
        -- , template = "%XMonadLog% }{ %kbd%%alsa:default:Master%%cpu%%memory%%battery%%date%%time%"
-       , template = "%XMonadLog% }{ %kbd%%alsa:default:Master%%cpu%%memory%%date%%time%"
+       , template = "%XMonadLog% }{ %kbd%%pamixer%%cpu%%memory%%date%%time%"
        }
