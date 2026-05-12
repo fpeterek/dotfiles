@@ -46,3 +46,8 @@ style = "Regular"
 [window.dimensions]
 columns = 140
 lines = 36
+
+[keyboard]
+bindings = [
+   { key = "t", mods = "Control|Alt", action = "SpawnNewInstance" }
+]
