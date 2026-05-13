@@ -91,6 +91,9 @@ alias cp='cp -i'
 alias ls='lsd'
 alias cat='bat'
 
+alias nv='nvim'
+alias nvconf='nvim ~/.config/nvim/'
+
 
 #  +-----------------------------------+
 #  |                                   |
