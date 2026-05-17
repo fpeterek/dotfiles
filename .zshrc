@@ -109,7 +109,7 @@ weather() {
         LOCATION=$1
     fi
 
-    curl "wttr.in/$LOCATION?0" 2> /dev/null
+    curl --connect-timeout 0.1 --max-time 0.2 "wttr.in/$LOCATION?0" 2> /dev/null
 }
 
 cowcat() {
