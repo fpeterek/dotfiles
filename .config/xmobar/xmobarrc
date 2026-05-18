@@ -42,7 +42,7 @@ Config { overrideRedirect = False
                     , Run Date "<box type=Bottom width=2 color=#81c19b><fc=#81c19b><hspace=5/><fn=1>\xf017</fn><hspace=5/>%H:%M<hspace=5/></fc></box>" "time" 10
                     , Run XMonadLog
                     , Run Battery
-                        [  "-t", "<box type=Bottom width=2 color=#a9a1e1><fc=#a9a1e1><hspace=5/><left>%<hspace=5/></fc><acstatus><hspace=5/></box>",
+                        [  "-t", "<box type=Bottom width=2 color=#a9a1e1><hspace=5/><acstatus><fc=#a9a1e1><hspace=5/><left>%<hspace=5/></fc></box>",
                            "-f", "\xf244\xf243\xf243\xf243\xf242\xf242\xf242\xf241\xf241\xf240",
                            "-W", "0",
                            "--",
@@ -58,6 +58,6 @@ Config { overrideRedirect = False
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       -- , template = "%XMonadLog% }{ %kbd%%alsa:default:Master%%cpu%%memory%%battery%%date%%time%"
-       , template = "%XMonadLog% }{ %kbd%%pamixer%%cpu%%memory%%date%%time%"
+       , template = "%XMonadLog% }{ %kbd%%pamixer%%cpu%%memory%%battery%%date%%time%"
+       -- , template = "%XMonadLog% }{ %kbd%%pamixer%%cpu%%memory%%date%%time%"
        }
