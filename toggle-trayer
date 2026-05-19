@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# Add to path so you can launch it from dmenu
+
+TRAYER_PID=''
+
+get-pid() {
+    ps aux | grep trayer 2>&1 | while read -r record
+    do
+        NAME=`echo $record | awk '{ print $11 }'`
+        TRAYER_PID=`echo $record | awk '{ print $2 }'`
+
+        if [ $NAME == "trayer" ]
+        then
+            echo $TRAYER_PID
+            return
+        fi
+    done
+}
+
+TRAYER_PID=`get-pid`
+
+if [ -z "$TRAYER_PID" ]
+then
+    # echo "No trayer instance found, spawning..."
+    trayer --align right --width 10 --height 22 --monitor primary --distance 470 --distancefrom right &> /dev/null & exit
+else
+    # echo "Trayer exists with pid $TRAYER_PID"
+    # echo "Killing process $TRAYER_PID"
+    kill $TRAYER_PID
+fi
+
+
