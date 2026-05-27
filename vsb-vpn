@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+openconnect \
+    --protocol=anyconnect \
+    --useragent=AnyConnect \
+    --interface=vpn0 \
+    --gnutls-priority="NORMAL:-VERS-ALL:+VERS-TLS1.2:+RSA:+AES-128-CBC:+SHA1" \
+    --script='sudo -E /etc/vpnc/vpnc-script' \
+    --authgroup="VSB full tunnel, local network" \
+    --server=vpn.vsb.cz
