@@ -15,7 +15,6 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
-import XMonad.Hooks.WindowSwallowing
 import XMonad.Hooks.InsertPosition
 
 import XMonad.Actions.Navigation2D
@@ -50,7 +49,6 @@ def' = def
     , focusedBorderColor = focusedBorderColor'
     , terminal = terminal'
     , keys = keys'
-    , handleEventHook = handleEventHook'
     }
 
 terminal' :: String
@@ -64,8 +62,6 @@ focusedBorderColor' = "#22b0e3"
 
 borderWidth' :: Dimension
 borderWidth' = 2
-
-handleEventHook' = swallowEventHook (className =? "Alacritty" <||> className =? "kitty") (return False)
 
 startupHook' :: X ()
 startupHook' = do
@@ -152,10 +148,10 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask , xK_j), windowGo D False)
 
     -- Swap Windows
-    , ((modMask .|. controlMask, xK_l), windowSwap R False)
-    , ((modMask .|. controlMask, xK_k), windowSwap U False)
-    , ((modMask .|. controlMask, xK_h), windowSwap L False)
-    , ((modMask .|. controlMask, xK_j), windowSwap D False)
+    , ((modMask .|. controlMask, xK_l), windowSwap R True)
+    , ((modMask .|. controlMask, xK_k), windowSwap U True)
+    , ((modMask .|. controlMask, xK_h), windowSwap L True)
+    , ((modMask .|. controlMask, xK_j), windowSwap D True)
 
     -- Move Window - needs columns
     -- , ((modMask .|. mod1Mask, xK_l), sendMessage MoveRight)
@@ -185,11 +181,16 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- Volume Control
-    , ((0 :: KeyMask, xF86XK_AudioLowerVolume), volumeDown)
-    , ((shiftMask,    xF86XK_AudioLowerVolume), volumeDownSmall)
-    , ((0 :: KeyMask, xF86XK_AudioRaiseVolume), volumeUp)
-    , ((shiftMask,    xF86XK_AudioRaiseVolume), volumeUpSmall)
-    , ((0 :: KeyMask, xF86XK_AudioMute       ), volumeMute)
+    -- , ((0 :: KeyMask, xF86XK_AudioLowerVolume), volumeDown)
+    -- , ((shiftMask,    xF86XK_AudioLowerVolume), volumeDownSmall)
+    -- , ((0 :: KeyMask, xF86XK_AudioRaiseVolume), volumeUp)
+    -- , ((shiftMask,    xF86XK_AudioRaiseVolume), volumeUpSmall)
+    -- , ((0 :: KeyMask, xF86XK_AudioMute       ), volumeMute)
+    , ((0 :: KeyMask, xK_F11), volumeDown)
+    , ((shiftMask,    xK_F11), volumeDownSmall)
+    , ((0 :: KeyMask, xK_F12), volumeUp)
+    , ((shiftMask,    xK_F12), volumeUpSmall)
+    , ((0 :: KeyMask, xK_F10), volumeMute)
 
     -- Brightness Control
     , ((0 :: KeyMask, xF86XK_MonBrightnessUp), brightnessUp)
