@@ -451,3 +451,11 @@ blink_indent_config = function()
         }
     })
 end
+
+
+fff_opts = {
+    debug = {
+        enabled = false,
+        show_scores = true,
+    },
+}

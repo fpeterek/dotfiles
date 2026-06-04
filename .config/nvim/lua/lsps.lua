@@ -103,11 +103,11 @@ vim.lsp.config('pylsp', {
 vim.lsp.enable('pylsp')
 
 
-vim.lsp.config('kotlin_language_server', {
-    on_attach = lsp_on_attach,
-})
-
-vim.lsp.enable('kotlin_language_server')
+-- vim.lsp.config('kotlin_language_server', {
+--     on_attach = lsp_on_attach,
+-- })
+--
+-- vim.lsp.enable('kotlin_language_server')
 
 
 vim.lsp.config('hls', {
@@ -122,3 +122,36 @@ vim.lsp.config('sourcekit', {
 })
 
 vim.lsp.enable('sourcekit')
+
+vim.lsp.config('jdtls', {
+    on_attach = lsp_on_attach,
+    settings = {
+        java = {
+            configuration = {
+                runtimes = {
+                    {
+                        name = 'JavaSE-17',
+                        path = '/usr/lib/jvm/java-17-openjdk',
+                    },
+                    {
+                        name = 'JavaSE-11',
+                        path = '/usr/lib/jvm/java-11-openjdk',
+                    },
+                    {
+                        name = 'JavaSE-8',
+                        path = '/usr/lib/jvm/java-8-openjdk',
+                    },
+                }
+            }
+        }
+    }
+})
+
+vim.lsp.enable('jdtls')
+
+
+vim.lsp.config('kotlin_lsp', {
+    on_attach = lsp_on_attach,
+})
+
+vim.lsp.enable('kotlin_lsp')

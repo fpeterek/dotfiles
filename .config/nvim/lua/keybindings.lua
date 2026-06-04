@@ -23,10 +23,27 @@ vim.api.nvim_set_keymap('n', '<C-p>', '<cmd>vertical res +5<cr>', { noremap=true
 
 -- vim.api.nvim_set_keymap('i', '<C-Space>', '<C-x><C-n>', { noremap=true })
 
+fff_keys = {
+    {
+        "<leader>ff",
+        function() require('fff').find_files() end,
+        desc = 'Find files'
+    },
+    {
+        "<leader>fg",
+        function() require('fff').live_grep() end,
+        desc = 'Live grep'
+    },
+    {
+        "<leader>fz",
+        function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end,
+        desc = 'Live fuzzy grep',
+    },
+}
 
 vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>Telescope find_files<cr>', { noremap=true })
-vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope git_files<cr>', { noremap=true })
-vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap=true })
+-- vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope git_files<cr>', { noremap=true })
+-- vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fc', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<leader>fr', '<cmd>Telescope registers<cr>', { noremap=true })

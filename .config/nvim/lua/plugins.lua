@@ -5,6 +5,10 @@ local plugins = {
     --     config = onedark_colorscheme
     -- },
 
+    { "tiagovla/tokyodark.nvim" },
+    { "ankushbhagats/pastel.nvim" },
+
+
     {
         "akinsho/horizon.nvim",
     },
@@ -16,11 +20,6 @@ local plugins = {
     {
         "NTBBloodbath/doom-one.nvim",
         config = doomone_colorscheme
-    },
-
-    {
-        "rose-pine/neovim",
-        config = rosepine_colorscheme
     },
 
     {
@@ -162,6 +161,20 @@ local plugins = {
 
     {
         "https://git.sr.ht/~chinmay/clangd_extensions.nvim",
+    },
+
+    {
+        'dmtrKovalenko/fff.nvim',
+        lazy = false,
+        opts = fff_opts,
+        keys = fff_keys,
+        build = function()
+            require('fff.download').download_or_build_binary()
+        end
+    },
+
+    {
+        'mfussenegger/nvim-jdtls',
     },
 
     {

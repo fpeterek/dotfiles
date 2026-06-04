@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd('FileType', {
         -- This is easier than writing the filetypes explicitely
         if vim.treesitter.get_parser(bufnr) then
             -- Indentation - experimental
-            -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             vim.treesitter.start()
         end
     end,
