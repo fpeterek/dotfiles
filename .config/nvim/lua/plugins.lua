@@ -109,6 +109,7 @@ local plugins = {
             "saghen/blink.download",
         },
         config = blink_pairs_config,
+        build = function() require('blink.pairs').build():pwait(60000) end,
     },
 
 

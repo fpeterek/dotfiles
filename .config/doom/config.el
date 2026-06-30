@@ -117,7 +117,7 @@
   :leader
   :desc "Toggle Neotree"
     "n t"
-    #'+neotree/open)
+    #'+treemacs/toggle)
 
 (map!
   :leader
@@ -193,12 +193,12 @@
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
-(after! doom-themes
-  (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
-
-(use-package! neotree
-  :config
-  (setq neo-theme 'icons))
+; (after! doom-themes
+;   (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
+;
+; (use-package! neotree
+;   :config
+;   (setq neo-theme 'icons))
 
 (defun c-mode-custom-hook ()
   (c-set-offset 'substatement-open 0)
