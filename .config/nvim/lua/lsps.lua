@@ -155,3 +155,9 @@ vim.lsp.config('kotlin_lsp', {
 })
 
 vim.lsp.enable('kotlin_lsp')
+
+vim.lsp.config('cmake', {
+    on_attach = lsp_on_attach,
+})
+
+vim.lsp.enable('cmake')
