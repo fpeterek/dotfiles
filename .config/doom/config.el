@@ -76,6 +76,15 @@
 
 (setq next-error-find-buffer-function 'next-error-buffer-unnavigated-current)
 
+(setq lsp-inlay-hint-enable t) 
+
+(add-hook 'lsp-mode-hook #'lsp-inlay-hints-mode)
+
+(setq lsp-diagnostics-attributes
+      '((unnecessary :foreground "dim gray")
+        (deprecated :strike-through t)))
+
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
@@ -129,7 +138,7 @@
   :leader
   :desc "Show Hover"
     "s h"
-    #'lsp-ui-doc-show)
+    #'lsp-ui-doc-glance)
 
 (map!
   :leader
